@@ -1,0 +1,111 @@
+# ============================================================================
+# RENDER BLUEPRINT - Full Ecommerce Deployment (Backend + Frontend + Admin)
+# ============================================================================
+# How to deploy:
+#   1. Push this repo to GitHub
+#   2. In Render dashboard: "New +" → "Blueprint" → Select this repo
+#   3. Fill in env vars marked `sync: false` in the dashboard after first deploy
+#   4. Future pushes to 'main' branch auto-deploy all 3 services
+# ============================================================================
+
+services:
+  # -------------------------------------------------------------------------
+  # 1. BACKEND - Node.js Web Service (API + Image Serving)
+  # -------------------------------------------------------------------------
+  - type: web
+    name: ecommerce-backend
+    runtime: node
+    region: oregon
+    plan: free
+    rootDir: backend
+    buildCommand: npm ci
+    startCommand: node server.js
+    healthCheckPath: /api/health
+    autoDeploy: true
+    branch: main
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATABASE
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 90d
+      - key: JWT_COOKIE_EXPIRES_IN
+        value: "90"
+      - key: FRONTEND_URL
+        sync: false
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: SENDGRID_API_KEY
+        sync: false
+      - key: EMAIL_FROM
+        sync: false
+      - key: EMAIL_FROM_NAME
+        sync: false
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+
+  # -------------------------------------------------------------------------
+  # 2. FRONTEND - Static Site (Customer-facing store)
+  # -------------------------------------------------------------------------
+  - type: static
+    name: ecommerce-frontend
+    runtime: static
+    region: oregon
+    plan: free
+    rootDir: frontend
+    buildCommand: npm ci && npm run build
+    publishDir: dist
+    autoDeploy: true
+    branch: main
+    envVars:
+      - key: VITE_API_BASE
+        sync: false
+      - key: NODE_ENV
+        value: production
+    routes:
+      - type: rewrite
+        source: /api/*
+        destination: https://ecommerce-backend.onrender.com/api/*
+      - type: rewrite
+        source: /images/*
+        destination: https://ecommerce-backend.onrender.com/images/*
+      - type: rewrite
+        source: /*
+        destination: /index.html
+
+  # -------------------------------------------------------------------------
+  # 3. ADMIN - Static Site (Admin dashboard)
+  # -------------------------------------------------------------------------
+  - type: static
+    name: ecommerce-admin
+    runtime: static
+    region: oregon
+    plan: free
+    rootDir: adminfrontend
+    buildCommand: npm ci && npm run build
+    publishDir: dist
+    autoDeploy: true
+    branch: main
+    envVars:
+      - key: VITE_API_BASE
+        sync: false
+      - key: NODE_ENV
+        value: production
+    routes:
+      - type: rewrite
+        source: /api/*
+        destination: https://ecommerce-backend.onrender.com/api/*
+      - type: rewrite
+        source: /images/*
+        destination: https://ecommerce-backend.onrender.com/images/*
+      - type: rewrite
+        source: /*
+        destination: /index.html
+

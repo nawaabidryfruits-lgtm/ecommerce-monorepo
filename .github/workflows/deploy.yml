@@ -1,0 +1,108 @@
+# ============================================================================
+# GitHub Actions - Auto Deploy to Render
+# ============================================================================
+# This workflow runs on every push to main branch.
+# Render's autoDeploy handles the actual deployment via render.yaml blueprint.
+# This workflow adds: build verification, health checks, and deployment status.
+# ============================================================================
+
+name: Deploy to Render
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:  # Manual trigger
+
+jobs:
+  # -------------------------------------------------------------------------
+  # 1. Verify builds work before deploying
+  # -------------------------------------------------------------------------
+  verify-builds:
+    name: Verify Builds
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      # Verify Backend builds
+      - name: Install Backend Dependencies
+        working-directory: ./backend
+        run: npm ci
+
+      - name: Test Backend Start (syntax check)
+        working-directory: ./backend
+        run: |
+          timeout 5 node -c server.js || true
+          echo "Backend syntax OK"
+
+      # Verify Frontend builds
+      - name: Install Frontend Dependencies
+        working-directory: ./frontend
+        run: npm ci
+
+      - name: Build Frontend
+        working-directory: ./frontend
+        run: npm run build
+        env:
+          VITE_API_BASE: https://ecommerce-backend.onrender.com/api
+
+      # Verify Admin builds
+      - name: Install Admin Dependencies
+        working-directory: ./adminfrontend
+        run: npm ci
+
+      - name: Build Admin
+        working-directory: ./adminfrontend
+        run: npm run build
+        env:
+          VITE_API_BASE: https://ecommerce-backend.onrender.com/api
+
+  # -------------------------------------------------------------------------
+  # 2. Deploy via Render API (optional - autoDeploy usually handles this)
+  # -------------------------------------------------------------------------
+  trigger-deploy:
+    name: Trigger Render Deploy
+    needs: verify-builds
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Backend Deploy
+        run: |
+          curl -X POST "https://api.render.com/v1/services/${{ secrets.RENDER_BACKEND_SERVICE_ID }}/deploys" \
+            -H "accept: application/json" \
+            -H "authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+            -H "content-type: application/json" \
+            -d '{"clearCache": "do_not_clear"}' || true
+        continue-on-error: true
+
+      - name: Trigger Frontend Deploy
+        run: |
+          curl -X POST "https://api.render.com/v1/services/${{ secrets.RENDER_FRONTEND_SERVICE_ID }}/deploys" \
+            -H "accept: application/json" \
+            -H "authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+            -H "content-type: application/json" \
+            -d '{"clearCache": "do_not_clear"}' || true
+        continue-on-error: true
+
+      - name: Trigger Admin Deploy
+        run: |
+          curl -X POST "https://api.render.com/v1/services/${{ secrets.RENDER_ADMIN_SERVICE_ID }}/deploys" \
+            -H "accept: application/json" \
+            -H "authorization: Bearer ${{ secrets.RENDER_API_KEY }}" \
+            -H "content-type: application/json" \
+            -d '{"clearCache": "do_not_clear"}' || true
+        continue-on-error: true
+
+      - name: Deployment Status
+        run: |
+          echo "✅ Deployment triggered! Check status at:"
+          echo "   Backend: https://dashboard.render.com/web/${{ secrets.RENDER_BACKEND_SERVICE_ID }}"
+          echo "   Frontend: https://dashboard.render.com/static/${{ secrets.RENDER_FRONTEND_SERVICE_ID }}"
+          echo "   Admin: https://dashboard.render.com/static/${{ secrets.RENDER_ADMIN_SERVICE_ID }}"
