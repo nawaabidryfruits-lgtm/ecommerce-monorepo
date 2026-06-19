@@ -5,11 +5,12 @@ import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
 import { Eye, EyeOff, LogIn } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { getApiBase } from '../services/api';
 
 const AdminLogin: React.FC = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    username: '',
+    email: '',
     password: ''
   });
   const [showPassword, setShowPassword] = useState(false);
@@ -26,15 +27,16 @@ const AdminLogin: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.username || !formData.password) {
-      toast.error('Please enter username and password');
+    if (!formData.email || !formData.password) {
+      toast.error('Please enter email and password');
       return;
     }
 
     setLoading(true);
     
     try {
-      const response = await fetch('/siteconfig-api/admin-auth/login', {
+      const apiBase = getApiBase();
+      const response = await fetch(`${apiBase}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -45,9 +47,9 @@ const AdminLogin: React.FC = () => {
       const data = await response.json();
 
       if (data.success) {
-        // Store token and admin info
+        // Store token and user info
         localStorage.setItem('adminToken', data.token);
-        localStorage.setItem('adminInfo', JSON.stringify(data.admin));
+        localStorage.setItem('adminInfo', JSON.stringify(data.data));
         
         toast.success('Login successful!');
         navigate('/dashboard');
@@ -78,15 +80,15 @@ const AdminLogin: React.FC = () => {
         <div className="bg-gray-800 rounded-xl shadow-2xl p-8 border border-gray-700">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <Label htmlFor="username" className="text-gray-200">Username</Label>
+              <Label htmlFor="email" className="text-gray-200">Email</Label>
               <Input
-                id="username"
-                type="text"
-                value={formData.username}
-                onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-                placeholder="Enter your username"
+                id="email"
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                placeholder="Enter your email"
                 className="mt-1 bg-gray-900 border-gray-700 text-white placeholder-gray-500"
-                autoComplete="username"
+                autoComplete="email"
                 disabled={loading}
               />
             </div>
