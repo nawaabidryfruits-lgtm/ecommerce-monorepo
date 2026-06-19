@@ -94,7 +94,8 @@ const BulkEmailSender: React.FC = () => {
       }
     } catch (error) {
       console.error('Preview error:', error);
-      toast.error(`Failed to generate preview: ${error.message || 'Unknown error'}`);
+      const errorMsg = error instanceof Error ? error.message : 'Unknown error';
+      toast.error(`Failed to generate preview: ${errorMsg}`);
     }
   };
 

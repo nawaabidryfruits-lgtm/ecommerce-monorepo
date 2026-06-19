@@ -203,17 +203,17 @@ const CategoryManagement: React.FC = () => {
 
   // Drag and drop state
   const [draggedCategory, setDraggedCategory] = useState<Category | null>(null);
-  const [dragOverCategory, setDragOverCategory] = useState<string | null>(null);
+  const [dragOverCategory, setDragOverCategory] = useState<Category | null>(null);
 
   const handleDragStart = (e: React.DragEvent, category: Category) => {
     setDraggedCategory(category);
     e.dataTransfer.effectAllowed = 'move';
   };
 
-  const handleDragOver = (e: React.DragEvent, categoryId: string) => {
+  const handleDragOver = (e: React.DragEvent, category: Category) => {
     e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
-    setDragOverCategory(categoryId);
+    setDragOverCategory(category);
   };
 
   const handleDragLeave = () => {

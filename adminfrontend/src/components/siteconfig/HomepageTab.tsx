@@ -252,7 +252,7 @@ const HomepageTab: React.FC<HomepageTabProps> = ({
                     })}
                   </select>
                   {feature.icon && (() => {
-                    const IconComponent = Icons[feature.icon as keyof typeof Icons];
+                    const IconComponent = Icons[feature.icon as keyof typeof Icons] as React.ComponentType<{className?: string}> | undefined;
                     return IconComponent ? (
                       <div className="w-10 h-10 flex items-center justify-center bg-gray-700 rounded border border-gray-600">
                         <IconComponent className="w-6 h-6 text-white" />
