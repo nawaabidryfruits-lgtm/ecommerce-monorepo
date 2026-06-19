@@ -128,3 +128,4 @@ bower_components/
 # .playwright-mcp/
 
 .vercel
+.env*
