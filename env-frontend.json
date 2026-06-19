@@ -1,0 +1,6 @@
+{
+  "key": "VITE_API_BASE_URL",
+  "value": "https://ecommerce-backend.onrender.com/api",
+  "target": "production",
+  "type": "plain"
+}

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Candidate API bases in priority order
 const CANDIDATE_BASES = [
-  (import.meta as any)?.env?.VITE_API_BASE as string | undefined,
+  (import.meta as any)?.env?.VITE_API_BASE_URL as string | undefined,
   'http://localhost:5001/api',
   'http://localhost:5000/api',
 ].filter(Boolean) as string[];

@@ -1,8 +1,6 @@
 // Simplified site configuration service
-// Prefer env override, fallback to localhost
-const API_BASE_URL = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_BASE)
-  ? import.meta.env.VITE_API_BASE
-  : '/api';
+// Prefer env override, fallback to /api for local development
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
 
 // API request helper with error handling
 const apiRequest = async (endpoint, options = {}) => {

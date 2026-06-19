@@ -27,7 +27,8 @@
  */
 
 // Backend API configuration
-export const API_BASE_URL = '/api';
+// Uses environment variable for production (Vercel), defaults to /api for local development
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
 
 import type { Product, Category, ProductsData, SiteConfig } from '../types';
 
