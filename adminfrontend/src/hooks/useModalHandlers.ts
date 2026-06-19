@@ -38,8 +38,8 @@ export const useModalHandlers = (state: ModalHandlersProps) => {
       colors: [],
       sizes: [],
       specifications: {},
-      hotDeal: false,
       inStock: true,
+      hotDeal: false,
     };
     setEditingProduct(newProduct);
     setIsEditModalOpen(true);
