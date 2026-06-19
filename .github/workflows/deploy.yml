@@ -100,9 +100,38 @@ jobs:
             -d '{"clearCache": "do_not_clear"}' || true
         continue-on-error: true
 
+      # Deploy Admin to Vercel
+      - name: Deploy Admin to Vercel
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js for Vercel Deploy
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
+      - name: Build Admin for Vercel
+        working-directory: ./adminfrontend
+        run: npm ci && npm run build
+
+      - name: Deploy Admin Frontend to Vercel
+        working-directory: ./adminfrontend
+        run: |
+          vercel deploy --prod --yes \
+            --token=${{ secrets.VERCEL_TOKEN }} \
+            --name="adminfrontend-pi" || true
+        env:
+          VITE_API_BASE_URL: ${{ secrets.VITE_API_BASE_URL || 'https://ecommerce-monorepo-kzb8.onrender.com/api' }}
+        continue-on-error: true
+
       - name: Deployment Status
         run: |
           echo "✅ Deployment triggered! Check status at:"
           echo "   Backend: https://dashboard.render.com/web/${{ secrets.RENDER_BACKEND_SERVICE_ID }}"
           echo "   Frontend: https://dashboard.render.com/static/${{ secrets.RENDER_FRONTEND_SERVICE_ID }}"
           echo "   Admin: https://dashboard.render.com/static/${{ secrets.RENDER_ADMIN_SERVICE_ID }}"
+          echo "   Admin Vercel: https://vercel.com/nawaabidryfruits-projects/adminfrontend-pi"
