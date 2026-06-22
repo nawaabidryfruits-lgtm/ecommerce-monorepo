@@ -139,7 +139,7 @@ app.use('/api/export', exportRoutes);
 app.use('/api/payment-settings', paymentSettingsRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/aboutus', aboutUsRoutes);
-app.use('/api/admin-auth', adminAuthRoutes);
+app.use('/siteconfig-api/admin-auth', adminAuthRoutes);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
