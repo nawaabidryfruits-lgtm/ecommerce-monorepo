@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/siteconfig-api/:path*",
-      "destination": "https://ecommerce-monorepo-kzb8.onrender.com/siteconfig-api/:path*"
+      "destination": "https://ecommerce-monorepo-kzb8.onrender.com/api/:path*"
     }
   ]
 }
