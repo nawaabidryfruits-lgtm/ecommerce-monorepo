@@ -25,7 +25,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLoginSuccess }) => {
 
     setIsLoading(true);
     try {
-      const response = await fetch('/siteconfig-api/admin-auth/login', {
+      const response = await fetch('https://ecommerce-monorepo-kzb8.onrender.com/api/admin-auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
