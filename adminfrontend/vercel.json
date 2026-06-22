@@ -2,12 +2,8 @@
   "outputDirectory": "dist",
   "rewrites": [
     {
-      "source": "/siteconfig-api/(.*)",
-      "destination": "https://ecommerce-monorepo-kzb8.onrender.com/siteconfig-api/$1"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "source": "/siteconfig-api/:path*",
+      "destination": "https://ecommerce-monorepo-kzb8.onrender.com/siteconfig-api/:path*"
     }
   ]
 }
