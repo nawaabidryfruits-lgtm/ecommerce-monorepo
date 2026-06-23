@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/siteconfig-api/:path*",
+      "destination": "https://ecommerce-monorepo-kzb8.onrender.com/api/siteconfig/:path*"
+    },
+    {
+      "source": "/siteconfig-api/admin-auth/:path*",
+      "destination": "https://ecommerce-monorepo-kzb8.onrender.com/api/admin-auth/:path*"
+    }
+  ]
+}
