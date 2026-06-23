@@ -10,7 +10,7 @@ import { getApiBase } from '../services/api';
 const AdminLogin: React.FC = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: '',
+    username: '',
     password: ''
   });
   const [showPassword, setShowPassword] = useState(false);
@@ -27,8 +27,8 @@ const AdminLogin: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.email || !formData.password) {
-      toast.error('Please enter email and password');
+    if (!formData.username || !formData.password) {
+      toast.error('Please enter username and password');
       return;
     }
 
@@ -80,15 +80,15 @@ const AdminLogin: React.FC = () => {
         <div className="bg-gray-800 rounded-xl shadow-2xl p-8 border border-gray-700">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <Label htmlFor="email" className="text-gray-200">Email</Label>
+              <Label htmlFor="username" className="text-gray-200">Username</Label>
               <Input
-                id="email"
-                type="email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                placeholder="Enter your email"
+                id="username"
+                type="text"
+                value={formData.username}
+                onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+                placeholder="Enter your username"
                 className="mt-1 bg-gray-900 border-gray-700 text-white placeholder-gray-500"
-                autoComplete="email"
+                autoComplete="username"
                 disabled={loading}
               />
             </div>

@@ -70,7 +70,7 @@ const AboutUsManagement: React.FC = () => {
 
   const fetchAboutUs = async () => {
     try {
-      const response = await authFetch('/siteconfig-api/aboutus');
+      const response = await authFetch('/aboutus');
       const result = await response.json();
       if (result.success && result.data) {
         setData(result.data);
@@ -86,7 +86,7 @@ const AboutUsManagement: React.FC = () => {
   const handleSave = async () => {
     setSaving(true);
     try {
-      const response = await authFetch('/siteconfig-api/aboutus', {
+      const response = await authFetch('/aboutus', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)

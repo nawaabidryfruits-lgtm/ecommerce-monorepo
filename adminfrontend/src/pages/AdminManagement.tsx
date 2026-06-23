@@ -41,7 +41,7 @@ const AdminManagement: React.FC = () => {
 
   const fetchAdmins = async () => {
     try {
-      const response = await authFetch('/siteconfig-api/admin-auth/list');
+      const response = await authFetch('/admin-auth/list');
 
       const data = await response.json();
       if (data.success) {
@@ -67,7 +67,7 @@ const AdminManagement: React.FC = () => {
 
     setCreating(true);
     try {
-      const response = await authFetch('/siteconfig-api/admin-auth/create', {
+      const response = await authFetch('/admin-auth/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

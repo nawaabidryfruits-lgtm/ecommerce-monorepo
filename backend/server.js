@@ -44,20 +44,30 @@ const isPrivateNetworkOrigin = (origin) => {
   }
 };
 
-const allowedOrigins = process.env.ALLOWED_ORIGINS
-  ? process.env.ALLOWED_ORIGINS.split(',').map((v) => v.trim()).filter(Boolean)
-  : [
-      process.env.FRONTEND_URL,
-      process.env.ADMIN_FRONTEND_URL,
-      'https://frontend-three-eta-33.vercel.app',
-      'https://adminfrontend-pi-rosy.vercel.app',
-      'http://localhost:5173',
-      'http://localhost:5177',
-      'http://localhost:5178',
-      'http://localhost:5174',
-      'http://localhost:8090',
-      'http://localhost:8091'
-    ].filter(Boolean);
+const normalizeOrigin = (value) => {
+  if (!value) return '';
+  return String(value).trim().replace(/\/$/, '');
+};
+
+const fallbackOrigins = [
+  process.env.FRONTEND_URL,
+  process.env.ADMIN_FRONTEND_URL,
+  'https://frontend-three-eta-33.vercel.app',
+  'https://adminfrontend-pi-rosy.vercel.app',
+  'http://localhost:5173',
+  'http://localhost:5177',
+  'http://localhost:5178',
+  'http://localhost:5174',
+  'http://localhost:8090',
+  'http://localhost:8091'
+].map(normalizeOrigin).filter(Boolean);
+
+const envOrigins = (process.env.ALLOWED_ORIGINS || '')
+  .split(',')
+  .map(normalizeOrigin)
+  .filter(Boolean);
+
+const allowedOrigins = new Set([...fallbackOrigins, ...envOrigins]);
 
 const isAllowedVercelPreview = (origin) => {
   try {
@@ -73,11 +83,13 @@ app.use(cors({
     // Allow requests with no origin (mobile apps, curl, etc)
     if (!origin) return callback(null, true);
 
+    const normalizedOrigin = normalizeOrigin(origin);
+
     if (process.env.NODE_ENV !== 'production' && isPrivateNetworkOrigin(origin)) {
       return callback(null, true);
     }
 
-    if (allowedOrigins.indexOf(origin) !== -1 || isAllowedVercelPreview(origin)) {
+    if (allowedOrigins.has(normalizedOrigin) || isAllowedVercelPreview(normalizedOrigin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));

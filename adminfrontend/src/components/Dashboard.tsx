@@ -243,7 +243,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
   const syncHotDealWithConfig = async (productId: string, isHotDeal: boolean) => {
     try {
       // Get current site config
-      const configRes = await authFetch('/siteconfig-api/siteconfig/all');
+      const configRes = await authFetch('/siteconfig/all');
       if (!configRes.ok) return;
       
       const configData = await configRes.json();
@@ -275,7 +275,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
         }
       };
       
-      await authFetch('/siteconfig-api/siteconfig/all', {
+      await authFetch('/siteconfig/all', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ config: updatedConfig, version: 1 })

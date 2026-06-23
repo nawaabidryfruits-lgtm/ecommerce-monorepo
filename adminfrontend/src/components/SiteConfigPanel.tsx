@@ -87,7 +87,7 @@ const SiteConfigPanel: React.FC = () => {
   const loadConfig = async () => {
     setIsLoading(true);
     try {
-      const response = await authFetch('/siteconfig-api/siteconfig');
+      const response = await authFetch('/siteconfig');
       if (response.ok) {
         const result = await response.json();
         if (result.success && result.data) {
@@ -114,7 +114,7 @@ const SiteConfigPanel: React.FC = () => {
   const saveConfig = async () => {
     setIsSaving(true);
     try {
-      const response = await authFetch('/siteconfig-api/siteconfig/all', {
+      const response = await authFetch('/siteconfig/all', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

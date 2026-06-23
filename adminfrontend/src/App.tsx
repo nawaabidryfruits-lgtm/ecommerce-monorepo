@@ -26,7 +26,7 @@ const App: React.FC = () => {
       }
 
       try {
-        const response = await authFetch('/siteconfig-api/admin-auth/me');
+        const response = await authFetch('/admin-auth/me');
 
         if (!response.ok) {
           localStorage.removeItem('adminToken');

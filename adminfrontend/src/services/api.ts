@@ -45,6 +45,18 @@ api.interceptors.response.use((response) => {
 
 export const getApiBase = () => API_BASE_URL;
 
+export const ensureApiBase = async () => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/health`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    });
+    return response.ok;
+  } catch {
+    return false;
+  }
+};
+
 // Helper function for authenticated fetch calls
 export const authFetch = async (url: string, options: RequestInit = {}): Promise<Response> => {
   const token = localStorage.getItem('adminToken');
@@ -56,8 +68,10 @@ export const authFetch = async (url: string, options: RequestInit = {}): Promise
   if (token) {
     (headers as Record<string, string>)['Authorization'] = `Bearer ${token}`;
   }
+
+  const fullUrl = url.startsWith('http') ? url : `${API_BASE_URL}${url}`;
   
-  const response = await fetch(url, {
+  const response = await fetch(fullUrl, {
     ...options,
     headers,
   });
