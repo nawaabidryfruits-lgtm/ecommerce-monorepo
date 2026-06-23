@@ -101,8 +101,11 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// Apply rate limiting to API routes
-app.use('/api/', apiLimiter);
+// Apply general API rate limiting, but keep admin login path unblocked.
+app.use('/api/', (req, res, next) => {
+  if (req.path === '/admin-auth/login') return next();
+  return apiLimiter(req, res, next);
+});
 
 // Lightweight health endpoint for readiness/liveness checks
 app.get('/api/health', (req, res) => {
