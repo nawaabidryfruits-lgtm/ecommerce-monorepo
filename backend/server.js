@@ -141,7 +141,8 @@ const adminAuthRoutes = require('./src/routes/adminAuthRoutes');
 app.use('/api/auth/signup', createAccountLimiter);
 app.use('/api/auth/login', authLimiter);
 app.use('/api/auth/forgotPassword', passwordResetLimiter);
-app.use('/api/admin-auth', authLimiter);
+// Keep admin auth reachable in production; limiter can be re-enabled after proxy tuning.
+// app.use('/api/admin-auth', authLimiter);
 
 app.use('/api/products', productRoutes);
 app.use('/api/categories', categoryRoutes);
