@@ -44,10 +44,13 @@ const isPrivateNetworkOrigin = (origin) => {
   }
 };
 
-const allowedOrigins = process.env.ALLOWED_ORIGINS 
-  ? process.env.ALLOWED_ORIGINS.split(',')
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+  ? process.env.ALLOWED_ORIGINS.split(',').map((v) => v.trim()).filter(Boolean)
   : [
       process.env.FRONTEND_URL,
+      process.env.ADMIN_FRONTEND_URL,
+      'https://frontend-three-eta-33.vercel.app',
+      'https://adminfrontend-pi-rosy.vercel.app',
       'http://localhost:5173',
       'http://localhost:5177',
       'http://localhost:5178',
@@ -55,6 +58,15 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS
       'http://localhost:8090',
       'http://localhost:8091'
     ].filter(Boolean);
+
+const isAllowedVercelPreview = (origin) => {
+  try {
+    const host = new URL(origin).hostname;
+    return host.endsWith('.vercel.app');
+  } catch {
+    return false;
+  }
+};
 
 app.use(cors({
   origin: function(origin, callback) {
@@ -65,7 +77,7 @@ app.use(cors({
       return callback(null, true);
     }
 
-    if (allowedOrigins.indexOf(origin) !== -1) {
+    if (allowedOrigins.indexOf(origin) !== -1 || isAllowedVercelPreview(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));

@@ -7,8 +7,12 @@ export const useFavicon = () => {
   useEffect(() => {
     const loadFavicon = async () => {
       try {
-        const response = await fetch('/siteconfig-api/siteconfig');
+        const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
+        const response = await fetch(`${apiBase}/siteconfig`);
         if (response.ok) {
+          const contentType = response.headers.get('content-type') || '';
+          if (!contentType.includes('application/json')) return;
+
           const result = await response.json();
           if (result.success && result.data?.branding?.faviconUrl) {
             const faviconUrl = result.data.branding.faviconUrl;
@@ -22,9 +26,10 @@ export const useFavicon = () => {
             }
             
             // Update favicon href
+            const backendBase = apiBase.replace('/api', '');
             const fullUrl = faviconUrl.startsWith('http') 
               ? faviconUrl 
-              : `http://localhost:5001${faviconUrl}`;
+              : `${backendBase}${faviconUrl}`;
             link.href = fullUrl;
             
             // Also update the type if it's an SVG
