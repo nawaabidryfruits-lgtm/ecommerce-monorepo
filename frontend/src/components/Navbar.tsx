@@ -168,12 +168,9 @@ const Navbar: React.FC = () => {
     ]
   };
 
-  const brandData = branding || {
-    logo: {
-      url: "/images/placeholder.svg",
-      alt: "Logo"
-    }
-  };
+  const brandData = branding || {};
+  const logoUrl = brandData?.logo?.url || '/images/placeholder.svg';
+  const logoAlt = brandData?.logo?.alt || 'Logo';
 
   return (
     <>
@@ -207,8 +204,8 @@ const Navbar: React.FC = () => {
         <div className="flex items-center lg:justify-start justify-center flex-1 lg:flex-none">
           <Link to="/">
             <img
-              src={brandData.logo.url}
-              alt={brandData.logo.alt}
+              src={logoUrl}
+              alt={logoAlt}
               className="h-4 sm:h-5 md:h-6 w-auto"
             />
           </Link>
@@ -342,8 +339,8 @@ const Navbar: React.FC = () => {
         {/* Sidebar Header */}
         <div className="flex items-center justify-between px-4 py-2 border-b border-gray-200">
           <img
-            src={brandData.logo.url}
-            alt={brandData.logo.alt}
+            src={logoUrl}
+            alt={logoAlt}
             className="h-5 w-auto"
           />
           <button 
