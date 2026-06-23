@@ -1,7 +1,7 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { Button } from '../components/ui/button';
 import toast from 'react-hot-toast';
-import { authFetch } from '../services/api';
+import { authFetch, getApiBase } from '../services/api';
 import {
   TrendingUp,
   DollarSign,

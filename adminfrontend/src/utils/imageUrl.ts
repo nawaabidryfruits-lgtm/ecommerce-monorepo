@@ -2,9 +2,11 @@
 // This ensures all image paths are correctly resolved to the backend API
 
 // API base URL for images (without /api suffix)
-export const IMAGE_BASE_URL = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_BASE)
-  ? import.meta.env.VITE_API_BASE.replace('/api', '')
-  : '${getImageBase()}';
+const apiBase = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_BASE_URL)
+  ? import.meta.env.VITE_API_BASE_URL.replace(/\/api$/, '')
+  : '';
+
+export const IMAGE_BASE_URL = apiBase;
 
 // Placeholder image path
 export const PLACEHOLDER_IMAGE = '/images/placeholder.svg';

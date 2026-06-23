@@ -2,7 +2,7 @@
 import { Button } from '../components/ui/button';
 import OrderDetailModal from '../components/modals/OrderDetailModal';
 import toast from 'react-hot-toast';
-import { authFetch } from '../services/api';
+import { authFetch, getApiBase } from '../services/api';
 import {
   Search,
   Filter,

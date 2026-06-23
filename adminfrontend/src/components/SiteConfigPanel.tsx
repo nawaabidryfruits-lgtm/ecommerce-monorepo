@@ -3,7 +3,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 import toast from 'react-hot-toast';
-import { authFetch } from '../services/api';
+import { authFetch, getImageBase } from '../services/api';
 import {
   Save,
   RotateCcw,

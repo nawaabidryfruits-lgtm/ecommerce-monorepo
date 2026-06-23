@@ -23,7 +23,7 @@ import {
   Pie,
   Cell
 } from 'recharts';
-import { authFetch } from '../services/api';
+import { authFetch, getApiBase } from '../services/api';
 
 // Types
 interface AnalyticsMetrics {

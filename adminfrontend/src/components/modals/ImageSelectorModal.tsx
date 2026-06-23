@@ -1,6 +1,6 @@
 ﻿import React, { useEffect, useMemo, useState, useRef } from 'react';
 import { X, Upload, Trash2, Plus } from 'lucide-react';
-import { imagesAPI } from '../../services/api';
+import { imagesAPI, getImageBase } from '../../services/api';
 import toast from 'react-hot-toast';
 
 interface ImageFile {

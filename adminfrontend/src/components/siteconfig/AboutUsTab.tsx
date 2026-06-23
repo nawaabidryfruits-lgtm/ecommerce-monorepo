@@ -6,7 +6,7 @@ import { Label } from '../ui/label';
 import { Save, Plus, Trash2, Eye } from 'lucide-react';
 import ImageSelectorModal from '../modals/ImageSelectorModal';
 import toast from 'react-hot-toast';
-import { authFetch } from '../../services/api';
+import { authFetch, getImageBase } from '../../services/api';
 
 interface Value {
   icon: string;

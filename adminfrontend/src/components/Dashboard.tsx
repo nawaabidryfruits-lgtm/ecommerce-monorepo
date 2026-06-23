@@ -1,5 +1,5 @@
 ﻿import React, { useState, useEffect } from 'react';
-import { productsAPI, categoriesAPI, ensureApiBase, authFetch } from '../services/api';
+import { productsAPI, categoriesAPI, ensureApiBase, authFetch, getImageBase } from '../services/api';
 import { Button } from './ui/button';
 import toast, { Toaster } from 'react-hot-toast';
 import { 

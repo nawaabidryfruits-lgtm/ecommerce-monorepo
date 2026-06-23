@@ -5,7 +5,7 @@ import { Textarea } from '../ui/textarea';
 import { Checkbox } from '../ui/checkbox';
 import { Label } from '../ui/label';
 import { X, Plus, Trash2, Image as ImageIcon, Code, Eye, Upload, CloudUpload } from 'lucide-react';
-import { imagesAPI } from '../../services/api';
+import { imagesAPI, getImageBase } from '../../services/api';
 import toast from 'react-hot-toast';
 import type { Product, Category, ImageFile } from '../../types';
 

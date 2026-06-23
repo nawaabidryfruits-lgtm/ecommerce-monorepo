@@ -1,6 +1,6 @@
 ﻿import React, { useState, useEffect } from 'react';
 import { Button } from '../ui/button';
-import { authFetch } from '../../services/api';
+import { authFetch, getApiBase } from '../../services/api';
 import { 
   X, 
   Calendar, 
