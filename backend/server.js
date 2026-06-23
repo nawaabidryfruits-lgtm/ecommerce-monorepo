@@ -171,7 +171,7 @@ app.all('*', (req, res, next) => {
 
 app.use(globalErrorHandler);
 
-const configuredDB = process.env.DATABASE;
+const configuredDB = process.env.DATABASE || process.env.MONGODB_URI;
 const defaultLocalDB = 'mongodb://localhost:27017/ecommerce';
 
 // Try configured DB first, then fall back to default local MongoDB for easier setup on new machines.
@@ -180,7 +180,7 @@ const dbCandidates = configuredDB
   : [defaultLocalDB];
 
 if (!configuredDB) {
-  console.warn(`DATABASE not found in config.env. Falling back to ${defaultLocalDB}`);
+  console.warn(`DATABASE/MONGODB_URI not found. Falling back to ${defaultLocalDB}`);
 }
 
 const connectDatabase = async () => {
