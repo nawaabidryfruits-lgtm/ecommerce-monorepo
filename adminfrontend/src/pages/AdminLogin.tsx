@@ -36,7 +36,7 @@ const AdminLogin: React.FC = () => {
     
     try {
       const apiBase = getApiBase();
-      const response = await fetch(`${apiBase}/auth/login`, {
+      const response = await fetch(`${apiBase}/admin-auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
