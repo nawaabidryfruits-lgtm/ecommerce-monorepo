@@ -1,3 +1,6 @@
+const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const Admin = require('../models/Admin');
 const { generateAdminToken } = require('../middleware/adminAuth');
 
@@ -16,8 +19,16 @@ exports.login = async (req, res) => {
       });
     }
 
-    // Find admin with password field
-    const admin = await Admin.findOne({ username }).select('+password');
+    const adminsCollection = mongoose.connection?.db?.collection('admins');
+    if (!adminsCollection) {
+      return res.status(500).json({
+        success: false,
+        message: 'Admin database is not ready'
+      });
+    }
+
+    // Read directly from collection to avoid schema projection/validation side effects on login path
+    const admin = await adminsCollection.findOne({ username });
 
     if (!admin) {
       return res.status(401).json({
@@ -35,7 +46,7 @@ exports.login = async (req, res) => {
     }
 
     // Check password
-    const isPasswordCorrect = await admin.comparePassword(password);
+    const isPasswordCorrect = await bcrypt.compare(password, admin.password || '');
 
     if (!isPasswordCorrect) {
       return res.status(401).json({
@@ -45,13 +56,13 @@ exports.login = async (req, res) => {
     }
 
     // Update last login
-    await admin.updateLastLogin();
+    await adminsCollection.updateOne(
+      { _id: admin._id },
+      { $set: { lastLogin: new Date(), updatedAt: new Date() } }
+    );
 
     // Generate token
-    const token = generateAdminToken(admin._id);
-
-    // Remove password from output
-    admin.password = undefined;
+    const token = jwt.sign({ id: String(admin._id) }, process.env.JWT_SECRET);
 
     res.status(200).json({
       success: true,

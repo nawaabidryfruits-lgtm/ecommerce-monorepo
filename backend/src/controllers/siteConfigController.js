@@ -2,6 +2,20 @@ const SiteConfig = require('../models/SiteConfig');
 
 // Minimal safe defaults for known sections to keep UI functional
 const DEFAULT_SECTIONS = {
+  all: {},
+  branding: {
+    siteName: 'Ecommerce',
+    logoUrl: '',
+    faviconUrl: ''
+  },
+  announcementbar: {
+    enabled: false,
+    text: ''
+  },
+  homepage: {
+    heroEnabled: true,
+    featuredProducts: []
+  },
   navigation: {
     mainMenu: [
       { name: 'Home', link: '/' },
