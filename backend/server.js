@@ -117,7 +117,7 @@ const adminAuthRoutes = require('./src/routes/adminAuthRoutes');
 app.use('/api/auth/signup', createAccountLimiter);
 app.use('/api/auth/login', authLimiter);
 app.use('/api/auth/forgotPassword', passwordResetLimiter);
-app.use('/api/admin-auth/login', authLimiter);
+app.use('/api/admin-auth', authLimiter);
 
 app.use('/api/products', productRoutes);
 app.use('/api/categories', categoryRoutes);
@@ -139,7 +139,7 @@ app.use('/api/export', exportRoutes);
 app.use('/api/payment-settings', paymentSettingsRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/aboutus', aboutUsRoutes);
-app.use('/siteconfig-api/admin-auth', adminAuthRoutes);
+app.use('/api/admin-auth', adminAuthRoutes);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
