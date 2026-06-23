@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Button } from '../components/ui/button';
 import OrderDetailModal from '../components/modals/OrderDetailModal';
 import toast from 'react-hot-toast';
@@ -142,7 +142,7 @@ const OrderManagement: React.FC = () => {
       if (dateFrom) params.append('dateFrom', dateFrom);
       if (dateTo) params.append('dateTo', dateTo);
 
-      const url = `/api/admin/orders?${params}`;
+      const url = `${getApiBase()}/admin/orders?${params}`;
       console.log('Fetching from URL:', url);
 
       const response = await authFetch(url);
@@ -345,7 +345,7 @@ const OrderManagement: React.FC = () => {
     }
 
     try {
-      const response = await authFetch('http://localhost:5001/api/admin/orders/bulk/status', {
+      const response = await authFetch('${getApiBase()}/admin/orders/bulk/status', {
         method: 'POST',
         body: JSON.stringify({
           orderIds: selectedOrders,
@@ -373,7 +373,7 @@ const OrderManagement: React.FC = () => {
   // Quick status update for single order
   const handleQuickStatusUpdate = async (orderId: string, newStatus: string) => {
     try {
-      const response = await authFetch(`http://localhost:5001/api/admin/orders/${orderId}/status`, {
+      const response = await authFetch(`${getApiBase()}/admin/orders/${orderId}/status`, {
         method: 'PATCH',
         body: JSON.stringify({
           status: newStatus,
@@ -397,7 +397,7 @@ const OrderManagement: React.FC = () => {
   // Quick payment status update
   const handleQuickPaymentUpdate = async (orderId: string, newPaymentStatus: string) => {
     try {
-      const response = await authFetch(`http://localhost:5001/api/admin/orders/${orderId}/payment`, {
+      const response = await authFetch(`${getApiBase()}/admin/orders/${orderId}/payment`, {
         method: 'PATCH',
         body: JSON.stringify({
           paymentStatus: newPaymentStatus,
@@ -421,7 +421,7 @@ const OrderManagement: React.FC = () => {
   // Handle return request response
   const handleReturnResponse = async (orderId: string, status: 'approved' | 'rejected') => {
     try {
-      const response = await authFetch(`http://localhost:5001/api/admin/orders/${orderId}/return`, {
+      const response = await authFetch(`${getApiBase()}/admin/orders/${orderId}/return`, {
         method: 'PATCH',
         body: JSON.stringify({ status })
       });

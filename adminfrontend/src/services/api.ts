@@ -45,6 +45,9 @@ api.interceptors.response.use((response) => {
 
 export const getApiBase = () => API_BASE_URL;
 
+// Returns the backend base URL without /api suffix (for image paths)
+export const getImageBase = () => API_BASE_URL.replace(/\/api$/, '');
+
 export const ensureApiBase = async () => {
   try {
     const response = await fetch(`${API_BASE_URL}/health`, {

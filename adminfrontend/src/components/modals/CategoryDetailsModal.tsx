@@ -1,3 +1,4 @@
+﻿import { getImageBase } from '../../services/api';
 import React from 'react';
 import { X } from 'lucide-react';
 import type { Product, Category } from '../../types';
@@ -6,8 +7,8 @@ import type { Product, Category } from '../../types';
 
 
 const resolveImg = (p?: string) => {
-  if (!p) return 'http://localhost:5001/images/placeholder.svg';
-  return p.startsWith('http') ? p : `http://localhost:5001${p}`;
+  if (!p) return '${getImageBase()}/images/placeholder.svg';
+  return p.startsWith('http') ? p : `${getImageBase()}${p}`;
 };
 
 const CategoryDetailsView: React.FC<{

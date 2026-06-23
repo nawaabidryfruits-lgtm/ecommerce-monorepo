@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { productsAPI, categoriesAPI, ensureApiBase, authFetch } from '../services/api';
 import { Button } from './ui/button';
 import toast, { Toaster } from 'react-hot-toast';
@@ -575,7 +575,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
                       <div className="relative w-full bg-muted overflow-hidden" style={{ 
                         height: 'clamp(280px, 25vw, 320px)'
                       }}>
-                        {(() => { const resolveImg = (p?: string) => p ? (p.startsWith('http') ? p : `http://localhost:5001${p}`) : 'http://localhost:5001/images/placeholder.svg'; return (
+                        {(() => { const resolveImg = (p?: string) => p ? (p.startsWith('http') ? p : `${getImageBase()}${p}`) : '${getImageBase()}/images/placeholder.svg'; return (
                         <img
                           src={resolveImg(product.images?.[0])}
                           alt={product.name}

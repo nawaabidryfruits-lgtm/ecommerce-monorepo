@@ -1,3 +1,4 @@
+﻿import { getImageBase } from '../../services/api';
 import React from 'react';
 import type { Category } from '../../types';
 import { Button } from '../ui/button';
@@ -11,8 +12,8 @@ interface CategoryGridProps {
 }
 
 const resolveImg = (p?: string) => {
-  if (!p) return 'http://localhost:5001/images/placeholder.svg';
-  return p.startsWith('http') ? p : `http://localhost:5001${p}`;
+  if (!p) return '${getImageBase()}/images/placeholder.svg';
+  return p.startsWith('http') ? p : `${getImageBase()}${p}`;
 };
 
 const CategoryGrid: React.FC<CategoryGridProps> = ({ categories, onView, onEdit, onDelete }) => {

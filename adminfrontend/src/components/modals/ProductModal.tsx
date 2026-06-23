@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
@@ -696,7 +696,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, onSave, pr
                                     title="Drag to reorder • Click to remove"
                                   >
                                     <img
-                                      src={`http://localhost:5001${imgPath}`}
+                                      src={`${getImageBase()}${imgPath}`}
                                       alt={`${color.name} image ${imgIdx + 1}`}
                                       className="w-full aspect-square object-cover"
                                     />
@@ -727,7 +727,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, onSave, pr
                                     title="Click to select"
                                   >
                                     <img
-                                      src={`http://localhost:5001${img}`}
+                                      src={`${getImageBase()}${img}`}
                                       alt={`Available image ${imgIdx + 1}`}
                                       className="w-full aspect-square object-cover"
                                     />
@@ -870,7 +870,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, onSave, pr
                         <div key={index} className="relative group">
                           <div className="aspect-square rounded-lg overflow-hidden border-2 border-blue-500 bg-gray-100">
                             <img
-                              src={`http://localhost:5001${imagePath}`}
+                              src={`${getImageBase()}${imagePath}`}
                               alt={`Product ${index + 1}`}
                               className="w-full h-full object-cover"
                             />
@@ -948,7 +948,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, onSave, pr
                           >
                             <div className="aspect-square bg-gray-200">
                               <img
-                                src={`http://localhost:5001${image.path}`}
+                                src={`${getImageBase()}${image.path}`}
                                 alt={image.name}
                                 className="w-full h-full object-cover"
                               />

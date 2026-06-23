@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
@@ -165,7 +165,7 @@ const SiteConfigPanel: React.FC = () => {
     // Update favicon href
     const fullUrl = faviconUrl.startsWith('http') 
       ? faviconUrl 
-      : `http://localhost:5001${faviconUrl}`;
+      : `${getImageBase()}${faviconUrl}`;
     link.href = fullUrl;
     
     // Also update the type based on extension

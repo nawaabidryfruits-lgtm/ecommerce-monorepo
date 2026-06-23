@@ -1,3 +1,4 @@
+﻿import { getImageBase } from '../services/api';
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
@@ -25,7 +26,7 @@ interface ImageFile {
   directory?: string;
 }
 
-const API_BASE = 'http://localhost:5001';
+const API_BASE = '${getImageBase()}';
 
 const ImageManagement: React.FC = () => {
   const [images, setImages] = useState<ImageFile[]>([]);

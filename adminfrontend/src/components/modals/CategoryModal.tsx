@@ -1,3 +1,4 @@
+﻿import { getImageBase } from '../../services/api';
 import React, { useState, useEffect } from 'react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
@@ -131,7 +132,7 @@ const CategoryModal: React.FC<CategoryModalProps> = ({
                 {formData.image && (
                   <div className="mt-2">
                     <img
-                      src={formData.image.startsWith('http') ? formData.image : `http://localhost:5001${formData.image}`}
+                      src={formData.image.startsWith('http') ? formData.image : `${getImageBase()}${formData.image}`}
                       alt="Category"
                       className="w-24 h-24 max-w-24 max-h-24 object-cover rounded border"
                       style={{

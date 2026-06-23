@@ -1,3 +1,4 @@
+﻿import { getApiBase } from '../../services/api';
 import React, { useState, useEffect } from 'react';
 import { Button } from '../ui/button';
 import toast from 'react-hot-toast';
@@ -191,7 +192,7 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
       // Update status if changed
       if (newStatus !== order.status) {
         console.log('Updating order status:', order._id, 'from', order.status, 'to', newStatus);
-        const response = await fetch(`http://localhost:5001/api/admin/orders/${order._id}/status`, {
+        const response = await fetch(`${getApiBase()}/admin/orders/${order._id}/status`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
@@ -213,7 +214,7 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
       // Update payment status if changed
       if (newPaymentStatus !== order.paymentStatus) {
         console.log('Updating payment status:', order._id, 'from', order.paymentStatus, 'to', newPaymentStatus);
-        const response = await fetch(`http://localhost:5001/api/admin/orders/${order._id}/payment`, {
+        const response = await fetch(`${getApiBase()}/admin/orders/${order._id}/payment`, {
           method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
@@ -250,7 +251,7 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
     }
 
     try {
-      const response = await fetch(`http://localhost:5001/api/admin/orders/${order._id}/shipping`, {
+      const response = await fetch(`${getApiBase()}/admin/orders/${order._id}/shipping`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -294,7 +295,7 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
 
     try {
       // Update payment status to refunded
-      const response = await fetch(`http://localhost:5001/api/admin/orders/${order._id}/payment`, {
+      const response = await fetch(`${getApiBase()}/admin/orders/${order._id}/payment`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
@@ -309,7 +310,7 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
       const data = await response.json();
       if (data.success) {
         // Add a note about the refund
-        await fetch(`http://localhost:5001/api/admin/orders/${order._id}/notes`, {
+        await fetch(`${getApiBase()}/admin/orders/${order._id}/notes`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

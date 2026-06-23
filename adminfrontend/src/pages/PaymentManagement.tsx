@@ -1,3 +1,4 @@
+﻿import { getImageBase } from '../services/api';
 import React, { useState, useEffect } from 'react';
 import { Button } from '../components/ui/button';
 import toast from 'react-hot-toast';
@@ -19,7 +20,7 @@ import {
   Image as ImageIcon
 } from 'lucide-react';
 
-const API_BASE = 'http://localhost:5001';
+const API_BASE = '${getImageBase()}';
 
 interface PaymentSettings {
   paymentMode: 'razorpay' | 'manual_upi';
@@ -374,7 +375,7 @@ const PaymentManagement: React.FC = () => {
                 {settings.upiSettings.qrCodeImage ? (
                   <div className="space-y-4">
                     <img
-                      src={settings.upiSettings.qrCodeImage.startsWith('http') ? settings.upiSettings.qrCodeImage : `http://localhost:5001${settings.upiSettings.qrCodeImage}`}
+                      src={settings.upiSettings.qrCodeImage.startsWith('http') ? settings.upiSettings.qrCodeImage : `${getImageBase()}${settings.upiSettings.qrCodeImage}`}
                       alt="UPI QR Code"
                       className="max-w-[200px] mx-auto rounded-lg"
                     />

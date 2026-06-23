@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { 
   IndianRupee,
   ShoppingCart, 
@@ -151,12 +151,12 @@ const Analytics: React.FC = () => {
 
       // Fetch from all endpoints in parallel with authentication
       const [dashboardRes, revenueRes, ordersRes, customersRes, productsRes, recentOrdersRes] = await Promise.all([
-        authFetch(`http://localhost:5001/api/analytics/dashboard?timeframe=${timeframe}`).catch(() => null),
-        authFetch(`http://localhost:5001/api/analytics/revenue?${dateParams}`).catch(() => null),
-        authFetch(`http://localhost:5001/api/analytics/orders?${dateParams}`).catch(() => null),
-        authFetch(`http://localhost:5001/api/analytics/customers?${dateParams}`).catch(() => null),
-        authFetch(`http://localhost:5001/api/products/stats`).catch(() => null),
-        authFetch(`http://localhost:5001/api/admin/orders?limit=5&sort=-createdAt`).catch(() => null)
+        authFetch(`${getApiBase()}/analytics/dashboard?timeframe=${timeframe}`).catch(() => null),
+        authFetch(`${getApiBase()}/analytics/revenue?${dateParams}`).catch(() => null),
+        authFetch(`${getApiBase()}/analytics/orders?${dateParams}`).catch(() => null),
+        authFetch(`${getApiBase()}/analytics/customers?${dateParams}`).catch(() => null),
+        authFetch(`${getApiBase()}/products/stats`).catch(() => null),
+        authFetch(`${getApiBase()}/admin/orders?limit=5&sort=-createdAt`).catch(() => null)
       ]);
 
       // Parse responses
@@ -287,7 +287,7 @@ const Analytics: React.FC = () => {
     // Fallback to direct API call if still no data
     if (!totalCustomers) {
       try {
-        const customersRes = await authFetch('http://localhost:5001/api/admin/customers');
+        const customersRes = await authFetch('${getApiBase()}/admin/customers');
         if (customersRes.ok) {
           const data = await customersRes.json();
           totalCustomers = data.totalCount || data.total || (Array.isArray(data.data) ? data.data.length : 0) || (Array.isArray(data) ? data.length : 0) || 0;
