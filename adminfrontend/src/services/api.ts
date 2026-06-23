@@ -1,13 +1,7 @@
 import axios from 'axios';
 
-// Candidate API bases in priority order
-const CANDIDATE_BASES = [
-  (import.meta as any)?.env?.VITE_API_BASE_URL as string | undefined,
-  'http://localhost:5001/api',
-  'http://localhost:5000/api',
-].filter(Boolean) as string[];
-
-let API_BASE_URL = CANDIDATE_BASES[0];
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
 
 const handleUnauthorizedSession = () => {
   localStorage.removeItem('adminToken');
@@ -48,10 +42,6 @@ api.interceptors.response.use((response) => {
   return Promise.reject(error);
 });
 
-export const setApiBase = (base: string) => {
-  API_BASE_URL = base.replace(/\/+$/, '');
-  api.defaults.baseURL = API_BASE_URL;
-};
 
 export const getApiBase = () => API_BASE_URL;
 
@@ -79,21 +69,6 @@ export const authFetch = async (url: string, options: RequestInit = {}): Promise
   return response;
 };
 
-// Try candidates until one responds to /health
-export const ensureApiBase = async () => {
-  for (const base of CANDIDATE_BASES) {
-    try {
-      const res = await fetch(`${base.replace(/\/+$/, '')}/health`, { method: 'GET' });
-      if (res.ok) {
-        setApiBase(base);
-        return base;
-      }
-    } catch (_) {
-      // try next
-    }
-  }
-  return API_BASE_URL;
-};
 
 // Products API
 export const productsAPI = {
