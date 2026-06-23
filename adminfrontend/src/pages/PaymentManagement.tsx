@@ -20,7 +20,7 @@ import {
   Image as ImageIcon
 } from 'lucide-react';
 
-const API_BASE = '${getImageBase()}';
+const API_BASE = getImageBase();
 
 interface PaymentSettings {
   paymentMode: 'razorpay' | 'manual_upi';
