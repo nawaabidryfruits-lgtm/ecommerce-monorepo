@@ -113,7 +113,7 @@ const CustomerManagement: React.FC = () => {
   const loadInquiries = async () => {
     try {
       setInquiriesLoading(true);
-      const response = await authFetch('${getApiBase()}/contact');
+      const response = await authFetch(`${getApiBase()}/contact`);
       const data = await response.json();
 
       if (data.success) {
@@ -234,7 +234,7 @@ const CustomerManagement: React.FC = () => {
     try {
       const loadingToast = toast.loading('Exporting customers...');
       
-      const response = await authFetch('${getApiBase()}/admin/customers/export?format=csv');
+      const response = await authFetch(`${getApiBase()}/admin/customers/export?format=csv`);
       const blob = await response.blob();
       
       const url = window.URL.createObjectURL(blob);

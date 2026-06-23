@@ -345,7 +345,7 @@ const OrderManagement: React.FC = () => {
     }
 
     try {
-      const response = await authFetch('${getApiBase()}/admin/orders/bulk/status', {
+      const response = await authFetch(`${getApiBase()}/admin/orders/bulk/status`, {
         method: 'POST',
         body: JSON.stringify({
           orderIds: selectedOrders,

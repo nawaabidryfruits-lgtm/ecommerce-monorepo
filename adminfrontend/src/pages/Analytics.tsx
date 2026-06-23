@@ -287,7 +287,7 @@ const Analytics: React.FC = () => {
     // Fallback to direct API call if still no data
     if (!totalCustomers) {
       try {
-        const customersRes = await authFetch('${getApiBase()}/admin/customers');
+        const customersRes = await authFetch(`${getApiBase()}/admin/customers`);
         if (customersRes.ok) {
           const data = await customersRes.json();
           totalCustomers = data.totalCount || data.total || (Array.isArray(data.data) ? data.data.length : 0) || (Array.isArray(data) ? data.length : 0) || 0;

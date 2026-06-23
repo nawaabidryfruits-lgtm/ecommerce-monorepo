@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Label } from '../components/ui/label';
+import { getApiBase } from '../services/api';
 import toast from 'react-hot-toast';
 import {
   Download,
@@ -52,7 +53,7 @@ const ExportReports: React.FC = () => {
   const loadExportTypes = async () => {
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await fetch('/api/export/types', {
+      const res = await fetch(`${getApiBase()}/export/types`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -64,10 +65,10 @@ const ExportReports: React.FC = () => {
       console.error('Failed to load export types:', error);
       // Set default types
       setExportTypes([
-        { id: 'orders', name: 'Orders', description: 'Export all orders', endpoint: '/api/export/orders', filters: ['startDate', 'endDate', 'status'] },
-        { id: 'customers', name: 'Customers', description: 'Export customers', endpoint: '/api/export/customers', filters: [] },
-        { id: 'products', name: 'Products', description: 'Export products', endpoint: '/api/export/products', filters: ['inStock'] },
-        { id: 'sales', name: 'Sales Report', description: 'Export sales', endpoint: '/api/export/sales', filters: ['startDate', 'endDate'] }
+        { id: 'orders', name: 'Orders', description: 'Export all orders', endpoint: `${getApiBase()}/export/orders`, filters: ['startDate', 'endDate', 'status'] },
+        { id: 'customers', name: 'Customers', description: 'Export customers', endpoint: `${getApiBase()}/export/customers`, filters: [] },
+        { id: 'products', name: 'Products', description: 'Export products', endpoint: `${getApiBase()}/export/products`, filters: ['inStock'] },
+        { id: 'sales', name: 'Sales Report', description: 'Export sales', endpoint: `${getApiBase()}/export/sales`, filters: ['startDate', 'endDate'] }
       ]);
     } finally {
       setLoading(false);

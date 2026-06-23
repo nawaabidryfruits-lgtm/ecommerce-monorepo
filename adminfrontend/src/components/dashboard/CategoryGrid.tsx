@@ -12,7 +12,7 @@ interface CategoryGridProps {
 }
 
 const resolveImg = (p?: string) => {
-  if (!p) return '${getImageBase()}/images/placeholder.svg';
+  if (!p) return `${getImageBase()}/images/placeholder.svg`;
   return p.startsWith('http') ? p : `${getImageBase()}${p}`;
 };
 
