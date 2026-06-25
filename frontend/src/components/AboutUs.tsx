@@ -46,6 +46,30 @@ const iconMap: { [key: string]: React.ReactNode } = {
   )
 };
 
+const DEFAULT_ABOUT_US: AboutUsData = {
+  heroTitle: 'About Us',
+  storyTitle: 'Our Story',
+  storyParagraphs: [
+    'Welcome to our store. We are dedicated to bringing you the finest quality products sourced from trusted suppliers around the world.',
+    'Founded with a passion for quality, we take pride in offering products that meet the highest standards.'
+  ],
+  storyImage: '',
+  missionTitle: 'Our Mission',
+  missionText: 'To provide our customers with the best quality products at fair prices, with exceptional service every step of the way.',
+  valuesTitle: 'Our Values',
+  values: [
+    { icon: 'quality', title: 'Premium Quality', description: 'We source only the finest products for our customers.' },
+    { icon: 'customer', title: 'Customer First', description: 'Your satisfaction is our top priority in everything we do.' },
+    { icon: 'innovation', title: 'Trust & Transparency', description: 'We build lasting relationships through honesty and fair practices.' }
+  ],
+  statsEnabled: false,
+  stats: [],
+  ctaTitle: 'Ready to Start Shopping?',
+  ctaText: 'Explore our wide range of premium products.',
+  ctaButtonText: 'Browse Products',
+  ctaButtonLink: '/products'
+};
+
 const AboutUs: React.FC = () => {
   const [data, setData] = useState<AboutUsData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -61,9 +85,11 @@ const AboutUs: React.FC = () => {
           setData(result.data);
         } else {
           console.error('About Us API returned error:', result.message);
+          setData(DEFAULT_ABOUT_US);
         }
       } catch (error) {
         console.error('Error fetching about us:', error);
+        setData(DEFAULT_ABOUT_US);
       } finally {
         setLoading(false);
       }
@@ -81,11 +107,8 @@ const AboutUs: React.FC = () => {
   }
 
   if (!data) {
-    return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
-        <p className="text-gray-500">Failed to load content</p>
-      </div>
-    );
+    // This should not be reached since we always fall back to DEFAULT_ABOUT_US
+    return null;
   }
 
   const resolveImage = (img: string) => {
