@@ -1,4 +1,4 @@
-import { getImageBase } from '../services/api';
+﻿import { getImageBase } from '../services/api';
 import React, { useState, useEffect } from 'react';
 import { Button } from '../components/ui/button';
 import toast from 'react-hot-toast';
@@ -20,7 +20,7 @@ import {
   Image as ImageIcon
 } from 'lucide-react';
 
-const API_BASE = `${getImageBase()}`;
+const API_BASE = getImageBase();
 
 interface PaymentSettings {
   paymentMode: 'razorpay' | 'manual_upi';

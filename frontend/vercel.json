@@ -1,6 +1,11 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "build": {
+    "env": {
+      "VITE_API_BASE_URL": "https://ecommerce-monorepo-kzb8.onrender.com/api"
+    }
+  },
   "rewrites": [
     {
       "source": "/(.*)",

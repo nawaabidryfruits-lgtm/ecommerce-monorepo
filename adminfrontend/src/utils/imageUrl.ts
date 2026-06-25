@@ -9,7 +9,7 @@ const apiBase = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_API
 export const IMAGE_BASE_URL = apiBase;
 
 // Placeholder image path
-export const PLACEHOLDER_IMAGE = getImageBase() + '/images/placeholder.svg';
+export const PLACEHOLDER_IMAGE = getImageBase() + getImageBase() + '/images/placeholder.svg';
 
 /**
  * Helper to get full image URL from a relative path

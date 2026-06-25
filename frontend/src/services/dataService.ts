@@ -29,6 +29,7 @@
 // Backend API configuration
 // Uses environment variable for production (Vercel), defaults to /api for local development
 export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
+export const API_ROOT_URL = API_BASE_URL.replace(/\/api\/?$/, '');
 
 import type { Product, Category, ProductsData, SiteConfig } from '../types';
 
@@ -37,10 +38,10 @@ const normalizeImageUrl = (img?: string): string | undefined => {
   if (!img) return img;
   // If already absolute (http/https), leave as-is
   if (/^https?:\/\//i.test(img)) return img;
-  // Map "/images/..." to backend static mount at "/api/images/..."
-  if (img.startsWith('/images/')) return `${API_BASE_URL}${img.replace(/^\/images\//, '/images/')}`;
+  // Product images are served from backend root as /images/*, not /api/images/*
+  if (img.startsWith('/images/')) return `${API_ROOT_URL}${img}`;
   // For any other relative path, serve via backend images as best-effort
-  return `${API_BASE_URL}/images/${img.replace(/^\/?/, '')}`;
+  return `${API_ROOT_URL}/images/${img.replace(/^\/?/, '')}`;
 };
 
 const normalizeProduct = (p: Product): Product => ({
