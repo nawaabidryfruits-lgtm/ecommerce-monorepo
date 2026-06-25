@@ -49,7 +49,7 @@ const ProductSelectorModal: React.FC<ProductSelectorModalProps> = ({
         setProducts(result.data || []);
       }
     } catch (error) {
-      console.error(`Error loading products:', error);
+      console.error('Error loading products:', error);
     } finally {
       setLoading(false);
     }

@@ -162,7 +162,7 @@ const Navbar: React.FC = () => {
   const navData = navigation || {
     mainMenu: [
       { name: "Home", link: "/" },
-      { name: "Products", link: "/products" },
+      { name: "Shop", link: "/shop" },
       { name: "About", link: "/about" },
       { name: "Contact", link: "/contact" }
     ]

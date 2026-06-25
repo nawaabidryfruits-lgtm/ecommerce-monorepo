@@ -255,7 +255,7 @@ const BulkEmailSender: React.FC = () => {
           </p>
         </div>
         <Button variant="outline" onClick={loadRecipientGroups} disabled={isLoading}>
-          <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : '`}`} />
+          <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
           Refresh
         </Button>
       </div>

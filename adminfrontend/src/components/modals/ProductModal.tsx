@@ -692,7 +692,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, onSave, pr
                                       imgIdx === 0 
                                         ? 'ring-2 ring-blue-500 ring-offset-2' 
                                         : 'ring-2 ring-green-500 ring-offset-1'
-                                    } ${draggedImage?.colorIndex === colorIndex && draggedImage?.imageIndex === imgIdx ? 'opacity-50 scale-90' : '`}`}
+                                    } ${draggedImage?.colorIndex === colorIndex && draggedImage?.imageIndex === imgIdx ? 'opacity-50 scale-90' : ''}`}
                                     title="Drag to reorder • Click to remove"
                                   >
                                     <img

@@ -378,21 +378,21 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
             {/* Analytics - Default Page */}
             <button
               onClick={() => setCurrentSection('analytics')}
-              className={`${currentSection === 'analytics' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted`} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left'}
+              className={`${currentSection === 'analytics' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left`}
             >
               <BarChart3 className="text-muted-foreground group-hover:text-foreground mr-3 h-5 w-5" />
               Analytics
             </button>
             <button
               onClick={() => setCurrentSection('orders')}
-              className={`${currentSection === 'orders' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted`} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left'}
+              className={`${currentSection === 'orders' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left`}
             >
               <ShoppingCart className="text-muted-foreground group-hover:text-foreground mr-3 h-5 w-5" />
               Orders
             </button>
             <button
               onClick={() => setCurrentSection('payments')}
-              className={`${currentSection === 'payments' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted`} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left'}
+              className={`${currentSection === 'payments' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left`}
             >
               <CreditCard className="text-muted-foreground group-hover:text-foreground mr-3 h-5 w-5" />
               Payments
@@ -407,21 +407,21 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
                 setSelectedCategoryForProducts('');
                 setCurrentPage(1);
               }}
-              className={`${currentSection === 'products' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted`} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left'}
+              className={`${currentSection === 'products' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left`}
             >
               <Package className="text-muted-foreground group-hover:text-foreground mr-3 h-5 w-5" />
               Products
             </button>
             <button
               onClick={() => setCurrentSection('categories')}
-              className={`${currentSection === 'categories' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted`} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left'}
+              className={`${currentSection === 'categories' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left`}
             >
               <Tags className="text-muted-foreground group-hover:text-foreground mr-3 h-5 w-5" />
               Categories
             </button>
             <button
               onClick={() => setCurrentSection('images')}
-              className={`${currentSection === 'images' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted`} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left'}
+              className={`${currentSection === 'images' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left`}
             >
               <Image className="text-muted-foreground group-hover:text-foreground mr-3 h-5 w-5" />
               Images
@@ -435,21 +435,21 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
                 setCurrentSection('customers');
                 setCurrentPage(1);
               }}
-              className={`${currentSection === 'customers' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted`} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left'}
+              className={`${currentSection === 'customers' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left`}
             >
               <Users className="text-muted-foreground group-hover:text-foreground mr-3 h-5 w-5" />
               Customers
             </button>
             <button
               onClick={() => setCurrentSection('bulk-email')}
-              className={`${currentSection === 'bulk-email' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted`} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left'}
+              className={`${currentSection === 'bulk-email' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left`}
             >
               <Mail className="text-muted-foreground group-hover:text-foreground mr-3 h-5 w-5" />
               Bulk Email
             </button>
             <button
               onClick={() => setCurrentSection('export')}
-              className={`${currentSection === 'export' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted`} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left'}
+              className={`${currentSection === 'export' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left`}
             >
               <Download className="text-muted-foreground group-hover:text-foreground mr-3 h-5 w-5" />
               Export Reports
@@ -459,7 +459,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
           <div className="mt-4 pt-4 border-t border-border space-y-1">
             <button 
               onClick={() => setCurrentSection('settings')}
-              className={`${currentSection === 'settings' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted`} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left'}
+              className={`${currentSection === 'settings' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left`}
             >
               <Settings className="text-muted-foreground group-hover:text-foreground mr-3 h-5 w-5" />
               Settings
@@ -468,7 +468,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
             {currentAdmin?.priority === 1 && (
               <button 
                 onClick={() => setCurrentSection('admin-management')}
-                className={`${currentSection === 'admin-management' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted`} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left'}
+                className={`${currentSection === 'admin-management' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left`}
               >
                 <Shield className="text-muted-foreground group-hover:text-foreground mr-3 h-5 w-5" />
                 Admin Management
@@ -575,7 +575,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
                       <div className="relative w-full bg-muted overflow-hidden" style={{ 
                         height: 'clamp(280px, 25vw, 320px)'
                       }}>
-                        {(() => { const resolveImg = (p?: string) => p ? (p.startsWith('http') ? p : `${getImageBase()}${p}`) : `${getImageBase()}/images/placeholder.svg`; return (
+                        {(() => { const resolveImg = (p?: string) => p ? (p.startsWith('http') ? p : getImageBase() + p) : getImageBase() + '/images/placeholder.svg'; return (
                         <img
                           src={resolveImg(product.images?.[0])}
                           alt={product.name}

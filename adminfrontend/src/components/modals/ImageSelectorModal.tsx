@@ -46,7 +46,7 @@ const ImageSelectorModal: React.FC<Props> = ({ isOpen, onClose, onSelect }) => {
     loadImages();
   }, [isOpen]);
 
-  const supported = useMemo(() => new Set([`.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg', '.ico']), []);
+  const supported = useMemo(() => new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg', '.ico']), []);
   const filtered = useMemo(() => images.filter((i) => supported.has(i.extension?.toLowerCase?.())), [images, supported]);
 
   const loadImages = async () => {
@@ -179,7 +179,7 @@ const ImageSelectorModal: React.FC<Props> = ({ isOpen, onClose, onSelect }) => {
         />
 
         <div
-          className={`p-4 ${dragOver ? 'bg-blue-50 border-2 border-dashed border-blue-300' : '`}`}
+          className={`p-4 ${dragOver ? 'bg-blue-50 border-2 border-dashed border-blue-300' : ''}`}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}

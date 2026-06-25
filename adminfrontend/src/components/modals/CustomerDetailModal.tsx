@@ -88,7 +88,7 @@ const CustomerDetailModal: React.FC<CustomerDetailModalProps> = ({
         setCustomerData(data.data);
       }
     } catch (error) {
-      console.error(`Error loading customer data:', error);
+      console.error('Error loading customer data:', error);
     } finally {
       setIsLoading(false);
     }
@@ -256,13 +256,13 @@ const CustomerDetailModal: React.FC<CustomerDetailModalProps> = ({
 
               {/* Tab Content */}
               <div className="space-y-4">
-                {activeTab === 'overview` && (
+                {activeTab === 'overview' && (
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-foreground">Current Cart</h4>
                     {customerData.cart && customerData.cart.length > 0 ? (
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {customerData.cart.map((item, index) => (
-                          <div key={index} className="flex items-center space-x-3 p-3 bg-muted/30 rounded-lg`>
+                          <div key={index} className="flex items-center space-x-3 p-3 bg-muted/30 rounded-lg">
                             {item.product?.images && item.product.images[0] && (
                               <img
                                 src={`${getApiBase()}/images/${item.product.images[0]}`}
@@ -271,7 +271,7 @@ const CustomerDetailModal: React.FC<CustomerDetailModalProps> = ({
                               />
                             )}
                             <div className="flex-1">
-                              <p className="text-sm font-medium text-foreground">{item.product?.name || `Unknown Product'}</p>
+                              <p className="text-sm font-medium text-foreground">{item.product?.name || 'Unknown Product'}</p>
                               <p className="text-xs text-muted-foreground">Qty: {item.quantity}</p>
                               <p className="text-sm font-semibold text-green-400">{formatPrice(item.product?.price || 0)}</p>
                             </div>
