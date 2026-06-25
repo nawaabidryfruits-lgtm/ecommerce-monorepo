@@ -1,4 +1,4 @@
-﻿import { getImageBase } from '../services/api';
+﻿import { getImageBase, authFetch, getApiBase } from '../services/api';
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
@@ -51,7 +51,7 @@ const ImageManagement: React.FC = () => {
   const loadImages = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch(`${API_BASE}/api/images`);
+      const response = await authFetch('/images');
       const data = await response.json();
       if (data.success) {
         setImages(data.data);
@@ -110,8 +110,10 @@ const ImageManagement: React.FC = () => {
     }
 
     try {
-      const response = await fetch(`${API_BASE}/api/images/upload`, {
+      const token = localStorage.getItem('adminToken');
+      const response = await fetch(`${getApiBase()}/images/upload`, {
         method: 'POST',
+        headers: token ? { 'Authorization': `Bearer ${token}` } : {},
         body: formData,
       });
       
@@ -147,12 +149,12 @@ const ImageManagement: React.FC = () => {
     if (!relativePath) return;
 
     try {
-      const response = await fetch(`${API_BASE}/api/images/${encodeURIComponent(relativePath)}`, {
+      const response = await authFetch(`/images/${encodeURIComponent(relativePath)}`, {
         method: 'DELETE',
       });
-      
+
       const data = await response.json();
-      
+
       if (data.success) {
         toast.success('Image deleted');
         loadImages();
@@ -182,7 +184,7 @@ const ImageManagement: React.FC = () => {
       if (!relativePath) continue;
 
       try {
-        const response = await fetch(`${API_BASE}/api/images/${encodeURIComponent(relativePath)}`, {
+        const response = await authFetch(`/images/${encodeURIComponent(relativePath)}`, {
           method: 'DELETE',
         });
         const data = await response.json();
