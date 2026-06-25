@@ -159,13 +159,21 @@ const Navbar: React.FC = () => {
   }
 
   // Use fallback data if config is not available
-  const navData = navigation || {
+  const rawNavData = navigation || {
     mainMenu: [
       { name: "Home", link: "/" },
-      { name: "Shop", link: "/shop" },
+      { name: "Products", link: "/products" },
       { name: "About", link: "/about" },
       { name: "Contact", link: "/contact" }
     ]
+  };
+  // Ensure Products link always exists in the nav
+  const hasProductsLink = rawNavData.mainMenu.some(
+    (item: any) => item.link === '/products' || item.link === '/shop' || item.name?.toLowerCase() === 'products' || item.name?.toLowerCase() === 'shop'
+  );
+  const navData = hasProductsLink ? rawNavData : {
+    ...rawNavData,
+    mainMenu: [...rawNavData.mainMenu, { name: 'Products', link: '/products' }]
   };
 
   const brandData = branding || {};

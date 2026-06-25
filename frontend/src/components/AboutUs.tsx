@@ -91,7 +91,11 @@ const AboutUs: React.FC = () => {
   const resolveImage = (img: string) => {
     if (!img) return '';
     if (img.startsWith('http')) return img;
-    return img.startsWith('/') ? img : `/${img}`;
+    if (img.startsWith('/images/')) return img;
+    // Has leading slash but no /images/ prefix
+    if (img.startsWith('/')) return `/images${img}`;
+    // Bare filename
+    return `/images/${img}`;
   };
 
   return (

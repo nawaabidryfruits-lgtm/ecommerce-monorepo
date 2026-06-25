@@ -2,11 +2,8 @@
 // This ensures all image paths are correctly resolved to the backend API
 
 // API base URL for images (without /api suffix)
-// @ts-ignore - Vite specific import.meta.env
-export const IMAGE_BASE_URL = (typeof import.meta !== 'undefined' && (import.meta as any).env && (import.meta as any).env.VITE_API_BASE)
-  // @ts-ignore - Vite specific import.meta.env
-  ? (import.meta as any).env.VITE_API_BASE.replace('/api', '')
-  : '';
+// Uses VITE_API_BASE_URL (consistent with dataService.ts)
+export const IMAGE_BASE_URL = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/api\/?$/, '');
 
 // Placeholder image path
 export const PLACEHOLDER_IMAGE = '/images/placeholder.svg';
@@ -33,8 +30,12 @@ export const getImageUrl = (imagePath: string | undefined | null, fallback: stri
     return imagePath;
   }
   
-  // Prepend the backend base URL for relative paths
-  return `${IMAGE_BASE_URL}${imagePath.startsWith('/') ? '' : '/'}${imagePath}`;
+  // Ensure /images/ prefix for all relative paths
+  if (imagePath.startsWith('/images/')) return `${IMAGE_BASE_URL}${imagePath}`;
+  // Has a leading slash but no /images/ prefix (e.g. /IMAGE_11.png -> /images/IMAGE_11.png)
+  if (imagePath.startsWith('/')) return `${IMAGE_BASE_URL}/images${imagePath}`;
+  // Bare filename (e.g. IMAGE_11.png -> /images/IMAGE_11.png)
+  return `${IMAGE_BASE_URL}/images/${imagePath}`;
 };
 
 /**
