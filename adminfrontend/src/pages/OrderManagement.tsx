@@ -366,7 +366,7 @@ const OrderManagement: React.FC = () => {
       }
     } catch (error: any) {
       console.error('Bulk update error:', error);
-      toast.error(error.message || 'Failed to update orders`);
+      toast.error(error.message || 'Failed to update orders');
     }
   };
 
@@ -374,7 +374,7 @@ const OrderManagement: React.FC = () => {
   const handleQuickStatusUpdate = async (orderId: string, newStatus: string) => {
     try {
       const response = await authFetch(`${getApiBase()}/admin/orders/${orderId}/status`, {
-        method: `PATCH',
+        method: 'PATCH',
         body: JSON.stringify({
           status: newStatus,
           notes: `Quick status update to ${newStatus}`
@@ -390,7 +390,7 @@ const OrderManagement: React.FC = () => {
       }
     } catch (error: any) {
       console.error('Quick status update error:', error);
-      toast.error(error.message || 'Failed to update order status`);
+      toast.error(error.message || 'Failed to update order status');
     }
   };
 
@@ -398,7 +398,7 @@ const OrderManagement: React.FC = () => {
   const handleQuickPaymentUpdate = async (orderId: string, newPaymentStatus: string) => {
     try {
       const response = await authFetch(`${getApiBase()}/admin/orders/${orderId}/payment`, {
-        method: `PATCH',
+        method: 'PATCH',
         body: JSON.stringify({
           paymentStatus: newPaymentStatus,
           notes: `Quick payment status update to ${newPaymentStatus}`
@@ -419,10 +419,10 @@ const OrderManagement: React.FC = () => {
   };
 
   // Handle return request response
-  const handleReturnResponse = async (orderId: string, status: 'approved' | 'rejected`) => {
+  const handleReturnResponse = async (orderId: string, status: 'approved' | 'rejected') => {
     try {
       const response = await authFetch(`${getApiBase()}/admin/orders/${orderId}/return`, {
-        method: `PATCH',
+        method: 'PATCH',
         body: JSON.stringify({ status })
       });
 
@@ -467,7 +467,7 @@ const OrderManagement: React.FC = () => {
   const totalAllOrders = summary.totalAllOrders || 0;
 
   return (
-    <div className=`space-y-6">
+    <div className="space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>

@@ -698,7 +698,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, onSave, pr
                                     <img
                                       src={`${getImageBase()}${imgPath}`}
                                       alt={`${color.name} image ${imgIdx + 1}`}
-                                      className=`w-full aspect-square object-cover"
+                                      className="w-full aspect-square object-cover"
                                     />
                                     <div className="absolute top-1 left-1 bg-black/70 text-white text-xs px-1.5 py-0.5 rounded font-bold">
                                       {imgIdx + 1}
@@ -724,12 +724,12 @@ const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, onSave, pr
                                     key={`unselected-${imgIdx}`}
                                     onClick={() => addImageToColor(colorIndex, img)}
                                     className="relative cursor-pointer rounded-lg overflow-hidden transition-all duration-150 border-2 border-gray-200 hover:border-blue-400 hover:shadow-md hover:scale-105"
-                                    title="Click to select`
+                                    title="Click to select"
                                   >
                                     <img
                                       src={`${getImageBase()}${img}`}
                                       alt={`Available image ${imgIdx + 1}`}
-                                      className=`w-full aspect-square object-cover"
+                                      className="w-full aspect-square object-cover"
                                     />
                                   </div>
                                 ))}
@@ -857,7 +857,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, onSave, pr
             )}
 
             {/* Images Tab */}
-            {activeTab === 'images` && (
+            {activeTab === 'images' && (
               <div className="space-y-6">
                 {/* Selected Images */}
                 {(formData.images || []).length > 0 && (
@@ -868,11 +868,11 @@ const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, onSave, pr
                     <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-3">
                       {(formData.images || []).map((imagePath, index) => (
                         <div key={index} className="relative group">
-                          <div className="aspect-square rounded-lg overflow-hidden border-2 border-blue-500 bg-gray-100`>
+                          <div className="aspect-square rounded-lg overflow-hidden border-2 border-blue-500 bg-gray-100">
                             <img
-                              src={`${getImageBase()}${imagePath}`}
-                              alt={`Product ${index + 1}`}
-                              className=`w-full h-full object-cover"
+                              src={getImageBase() + imagePath}
+                              alt={'Product ' + (index + 1)}
+                              className="w-full h-full object-cover"
                             />
                           </div>
                           <button
@@ -893,9 +893,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, onSave, pr
 
                 {/* Upload Area */}
                 <div
-                  className={`border-2 border-dashed rounded-xl p-8 text-center transition-all ${
-                    dragOver ? `border-blue-500 bg-blue-50 dark:bg-blue-950' : 'border-gray-300 dark:border-gray-600'
-                  }`}
+                  className={'border-2 border-dashed rounded-xl p-8 text-center transition-all ' + (dragOver ? 'border-blue-500 bg-blue-50 dark:bg-blue-950' : 'border-gray-300 dark:border-gray-600')}
                   onDragOver={handleDragOver}
                   onDragLeave={handleDragLeave}
                   onDrop={handleDrop}
@@ -940,17 +938,13 @@ const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, onSave, pr
                           <div
                             key={index}
                             onClick={() => handleImageSelect(image.path)}
-                            className={`relative cursor-pointer rounded-lg overflow-hidden transition-all ${
-                              isSelected
-                                ? 'ring-2 ring-blue-500 opacity-50'
-                                : 'hover:ring-2 hover:ring-blue-300'
-                            }`}
+                            className={'relative cursor-pointer rounded-lg overflow-hidden transition-all ' + (isSelected ? 'ring-2 ring-blue-500 opacity-50' : 'hover:ring-2 hover:ring-blue-300')}
                           >
-                            <div className="aspect-square bg-gray-200`>
+                            <div className="aspect-square bg-gray-200">
                               <img
-                                src={`${getImageBase()}${image.path}`}
+                                src={getImageBase() + image.path}
                                 alt={image.name}
-                                className=`w-full h-full object-cover"
+                                className="w-full h-full object-cover"
                               />
                             </div>
                             {isSelected && (
@@ -972,7 +966,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, onSave, pr
             )}
 
             {/* Raw JSON Tab */}
-            {activeTab === `json' && (
+            {activeTab === 'json' && (
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <Label>Raw JSON Data</Label>

@@ -183,7 +183,7 @@ const Analytics: React.FC = () => {
           
           ordersData.recentOrders = ordersArray.slice(0, 5).map((order: any) => ({
             orderId: order.orderId || order._id,
-            customerName: order.shippingAddress?.fullName || order.user?.name || `Unknown',
+            customerName: order.shippingAddress?.fullName || order.user?.name || 'Unknown',
             total: order.total,
             status: order.status,
             createdAt: order.createdAt
