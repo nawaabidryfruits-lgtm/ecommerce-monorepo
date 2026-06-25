@@ -28,6 +28,11 @@ export default defineConfig({
         target: 'http://localhost:5001',
         changeOrigin: true,
       },
+      // Proxy image requests to backend static server
+      '/images': {
+        target: 'http://localhost:5001',
+        changeOrigin: true,
+      },
     },
   },
 })
