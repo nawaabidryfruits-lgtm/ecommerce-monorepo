@@ -254,7 +254,7 @@ const verifyUPIPayment = async (req, res) => {
       order.status = 'processing';
       order.paymentInfo.status = 'completed';
       order.paymentInfo.verifiedAt = new Date();
-      order.paymentInfo.verifiedBy = req.user.id;
+      order.paymentInfo.verifiedBy = req.admin?._id || req.admin?.id || null;
       order.paymentInfo.verificationNotes = notes || 'Payment verified';
       order.paymentInfo.paidAt = new Date();
       
@@ -343,7 +343,7 @@ const verifyUPIPayment = async (req, res) => {
       order.paymentInfo.status = 'failed';
       order.paymentInfo.failedAt = new Date();
       order.paymentInfo.failureReason = notes || 'Payment verification failed';
-      order.paymentInfo.verifiedBy = req.user.id;
+      order.paymentInfo.verifiedBy = req.admin?._id || req.admin?.id || null;
       
       // Add to timeline
       order.timeline.push({

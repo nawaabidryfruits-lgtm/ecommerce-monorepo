@@ -130,13 +130,13 @@ const CategoryModal: React.FC<CategoryModalProps> = ({
                   </Button>
                 </div>
                 {formData.image && (
-                  <div className="mt-2">
+                  <div className="mt-2`>
                     <img
-                      src={formData.image.startsWith('http') ? formData.image : `${getImageBase()}${formData.image}`}
-                      alt="Category"
+                      src={formData.image.startsWith('http`) ? formData.image : `${getImageBase()}${formData.image}`}
+                      alt=`Category"
                       className="w-24 h-24 max-w-24 max-h-24 object-cover rounded border"
                       style={{
-                        minHeight: '96px',
+                        minHeight: `96px',
                         maxHeight: '96px',
                         minWidth: '96px',
                         maxWidth: '96px',

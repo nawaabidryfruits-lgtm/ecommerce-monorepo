@@ -30,7 +30,7 @@ const humanSize = (bytes: number) => {
   return `${n.toFixed(1)} ${units[i]}`;
 };
 
-const toSrc = (p?: string) => (p?.startsWith('http') ? p : `${getImageBase()}${p}`);
+const toSrc = (p?: string) => (p?.startsWith('http`) ? p : `${getImageBase()}${p}`);
 
 const ImageSelectorModal: React.FC<Props> = ({ isOpen, onClose, onSelect }) => {
   const [images, setImages] = useState<ImageFile[]>([]);
@@ -46,7 +46,7 @@ const ImageSelectorModal: React.FC<Props> = ({ isOpen, onClose, onSelect }) => {
     loadImages();
   }, [isOpen]);
 
-  const supported = useMemo(() => new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg', '.ico']), []);
+  const supported = useMemo(() => new Set([`.png', '.jpg', '.jpeg', '.gif', '.webp', '.svg', '.ico']), []);
   const filtered = useMemo(() => images.filter((i) => supported.has(i.extension?.toLowerCase?.())), [images, supported]);
 
   const loadImages = async () => {

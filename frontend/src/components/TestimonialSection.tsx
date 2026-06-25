@@ -124,7 +124,7 @@ const TestimonialSection: React.FC = () => {
 
                 {/* Star Rating */}
                 <div className="flex items-center justify-center mb-3 sm:mb-4 md:mb-5 lg:mb-6 gap-0.5 sm:gap-1">
-                  {[...Array(current.rating)].map((_, i) => (
+                  {current && current.rating && [...Array(current.rating)].map((_, i) => (
                     <svg
                       key={i}
                       className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 text-[#FFA500]"
@@ -142,7 +142,7 @@ const TestimonialSection: React.FC = () => {
                     className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-white font-medium leading-relaxed text-center"
                     style={{ fontFamily: "'Albert Sans', sans-serif" }}
                   >
-                    "{current.text}"
+                    "{current?.text || ''}"
                   </blockquote>
                 </div>
 
@@ -152,13 +152,13 @@ const TestimonialSection: React.FC = () => {
                     className="font-bold text-sm sm:text-base md:text-lg lg:text-lg xl:text-xl text-white mb-1"
                     style={{ fontFamily: "'Albert Sans', sans-serif" }}
                   >
-                    {current.name}
+                    {current?.name || ''}
                   </div>
                   <div 
                     className="text-xs sm:text-sm md:text-sm lg:text-sm xl:text-base text-white/60"
                     style={{ fontFamily: "'Albert Sans', sans-serif" }}
                   >
-                    {current.role}
+                    {current?.role || ''}
                   </div>
                 </div>
 

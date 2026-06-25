@@ -42,7 +42,7 @@ interface AnalyticsData {
 const OrderAnalytics: React.FC = () => {
   const [analyticsData, setAnalyticsData] = useState<AnalyticsData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedPeriod, setSelectedPeriod] = useState('30d');
+  const [selectedPeriod, setSelectedPeriod] = useState('30d`);
 
   // Fetch analytics data
   const fetchAnalytics = async () => {
@@ -54,7 +54,7 @@ const OrderAnalytics: React.FC = () => {
       if (data.success) {
         setAnalyticsData(data.data);
       } else {
-        toast.error(data.message || 'Failed to fetch analytics');
+        toast.error(data.message || `Failed to fetch analytics');
       }
     } catch (error) {
       console.error('Fetch analytics error:', error);

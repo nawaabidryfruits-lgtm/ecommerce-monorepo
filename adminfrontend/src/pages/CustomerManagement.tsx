@@ -74,7 +74,7 @@ const CustomerManagement: React.FC = () => {
   const [inquiries, setInquiries] = useState<ContactInquiry[]>([]);
   const [inquiriesLoading, setInquiriesLoading] = useState(false);
   const [inquirySearchTerm, setInquirySearchTerm] = useState('');
-  const [inquiryStatusFilter, setInquiryStatusFilter] = useState<string>('all');
+    const [inquiryStatusFilter, setInquiryStatusFilter] = useState<string>('all');
   const [selectedInquiry, setSelectedInquiry] = useState<ContactInquiry | null>(null);
   const [isInquiryModalOpen, setIsInquiryModalOpen] = useState(false);
   const [newInquiriesCount, setNewInquiriesCount] = useState(0);
@@ -99,7 +99,7 @@ const CustomerManagement: React.FC = () => {
         setCustomers(data.data.customers);
         setPagination(data.data.pagination);
       } else {
-        toast.error('Failed to load customers');
+        toast.error(`Failed to load customers');
       }
     } catch (error) {
       console.error('Error loading customers:', error);
@@ -135,9 +135,9 @@ const CustomerManagement: React.FC = () => {
   // Update inquiry status
   const updateInquiryStatus = async (inquiryId: string, status: string) => {
     try {
-      const loadingToast = toast.loading('Updating status...');
+      const loadingToast = toast.loading('Updating status...`);
       const response = await authFetch(`${getApiBase()}/contact/${inquiryId}`, {
-        method: 'PATCH',
+        method: `PATCH',
         body: JSON.stringify({ status })
       });
       const data = await response.json();
@@ -157,9 +157,9 @@ const CustomerManagement: React.FC = () => {
   // Delete inquiry
   const deleteInquiry = async (inquiryId: string) => {
     try {
-      const loadingToast = toast.loading('Deleting inquiry...');
+      const loadingToast = toast.loading('Deleting inquiry...`);
       const response = await authFetch(`${getApiBase()}/contact/${inquiryId}`, {
-        method: 'DELETE'
+        method: `DELETE'
       });
       const data = await response.json();
 
@@ -181,10 +181,10 @@ const CustomerManagement: React.FC = () => {
     setSelectedInquiry(inquiry);
     setIsInquiryModalOpen(true);
     
-    if (inquiry.status === 'new') {
+    if (inquiry.status === 'new`) {
       try {
         await authFetch(`${getApiBase()}/contact/${inquiry._id}/read`, {
-          method: 'PATCH'
+          method: `PATCH'
         });
         loadInquiries(); // Refresh to update status
       } catch (error) {

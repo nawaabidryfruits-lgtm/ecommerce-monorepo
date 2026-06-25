@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { X, Search, Check } from 'lucide-react';
@@ -30,7 +30,7 @@ const ProductSelectorModal: React.FC<ProductSelectorModalProps> = ({
 }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('`);
   const [tempSelected, setTempSelected] = useState<string[]>(selectedProductIds);
 
   useEffect(() => {
@@ -49,7 +49,7 @@ const ProductSelectorModal: React.FC<ProductSelectorModalProps> = ({
         setProducts(result.data || []);
       }
     } catch (error) {
-      console.error('Error loading products:', error);
+      console.error(`Error loading products:', error);
     } finally {
       setLoading(false);
     }

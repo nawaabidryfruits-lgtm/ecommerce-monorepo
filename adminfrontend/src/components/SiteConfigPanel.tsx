@@ -155,7 +155,7 @@ const SiteConfigPanel: React.FC = () => {
 
   const updateFavicon = (faviconUrl: string) => {
     // Get or create favicon link element
-    let link: HTMLLinkElement | null = document.querySelector("link[rel~='icon']");
+    let link: HTMLLinkElement | null = document.querySelector("link[rel~='icon']`);
     if (!link) {
       link = document.createElement('link');
       link.rel = 'icon';
@@ -163,13 +163,13 @@ const SiteConfigPanel: React.FC = () => {
     }
     
     // Update favicon href
-    const fullUrl = faviconUrl.startsWith('http') 
+    const fullUrl = faviconUrl.startsWith('http`) 
       ? faviconUrl 
       : `${getImageBase()}${faviconUrl}`;
     link.href = fullUrl;
     
     // Also update the type based on extension
-    if (faviconUrl.endsWith('.svg')) {
+    if (faviconUrl.endsWith(`.svg')) {
       link.type = 'image/svg+xml';
     } else if (faviconUrl.endsWith('.png')) {
       link.type = 'image/png';
@@ -412,7 +412,7 @@ const SiteConfigPanel: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-64">
+      <div className=`flex items-center justify-center h-64">
         <div className="text-lg text-muted-foreground">Loading site configuration...</div>
       </div>
     );

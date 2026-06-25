@@ -101,9 +101,11 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// Apply general API rate limiting, but keep admin login path unblocked.
+// Apply general API rate limiting, but keep admin login and stats paths unblocked.
 app.use('/api/', (req, res, next) => {
   if (req.path === '/admin-auth/login') return next();
+  if (req.path.startsWith('/products/stats')) return next();
+  if (req.path.startsWith('/analytics')) return next();
   return apiLimiter(req, res, next);
 });
 

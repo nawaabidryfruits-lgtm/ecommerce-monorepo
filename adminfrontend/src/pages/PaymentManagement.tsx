@@ -20,7 +20,7 @@ import {
   Image as ImageIcon
 } from 'lucide-react';
 
-const API_BASE = getImageBase();
+const API_BASE = `${getImageBase()}`;
 
 interface PaymentSettings {
   paymentMode: 'razorpay' | 'manual_upi';
@@ -373,10 +373,10 @@ const PaymentManagement: React.FC = () => {
               </label>
               <div className="border-2 border-dashed border-border rounded-lg p-6 text-center">
                 {settings.upiSettings.qrCodeImage ? (
-                  <div className="space-y-4">
+                  <div className="space-y-4`>
                     <img
-                      src={settings.upiSettings.qrCodeImage.startsWith('http') ? settings.upiSettings.qrCodeImage : `${getImageBase()}${settings.upiSettings.qrCodeImage}`}
-                      alt="UPI QR Code"
+                      src={settings.upiSettings.qrCodeImage.startsWith('http`) ? settings.upiSettings.qrCodeImage : `${getImageBase()}${settings.upiSettings.qrCodeImage}`}
+                      alt=`UPI QR Code"
                       className="max-w-[200px] mx-auto rounded-lg"
                     />
                     <div className="flex flex-col gap-2">
@@ -493,7 +493,7 @@ const PaymentManagement: React.FC = () => {
               </div>
 
               <Button onClick={handleSaveSettings} disabled={saving}>
-                {saving ? 'Saving...' : 'Save UPI Settings'}
+                {saving ? `Saving...' : 'Save UPI Settings'}
               </Button>
             </div>
           </div>

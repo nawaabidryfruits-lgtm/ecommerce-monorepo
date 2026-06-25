@@ -23,7 +23,7 @@ const CategoryDetailsView: React.FC<{
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="md:col-span-2 space-y-4">
           <h3 className="text-2xl font-bold text-foreground">{category.name}</h3>
-          <p className="text-muted-foreground">{category.description || 'No description provided.'}</p>
+          <p className="text-muted-foreground">{category.description || `No description provided.'}</p>
         </div>
         <div className="space-y-4 bg-muted/50 p-4 rounded-md border border-border">
             <div className="flex justify-between items-center">

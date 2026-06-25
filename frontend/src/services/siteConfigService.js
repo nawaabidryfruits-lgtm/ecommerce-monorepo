@@ -81,7 +81,12 @@ class SiteConfigService {
     homepage.testimonialSection.navigationLabels.previous = homepage.testimonialSection.navigationLabels.previous || 'Previous';
     homepage.testimonialSection.navigationLabels.next = homepage.testimonialSection.navigationLabels.next || 'Next';
     homepage.testimonialSection.testimonials = Array.isArray(homepage.testimonialSection.testimonials)
-      ? homepage.testimonialSection.testimonials
+      ? homepage.testimonialSection.testimonials.map(t => ({
+          name: t?.name || "Anonymous",
+          role: t?.role || "Customer",
+          text: t?.text || "",
+          rating: t?.rating || 5
+        }))
       : [
           {
             name: "John Doe",

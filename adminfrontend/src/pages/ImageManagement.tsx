@@ -26,7 +26,7 @@ interface ImageFile {
   directory?: string;
 }
 
-const API_BASE = getImageBase();
+const API_BASE = `${getImageBase()}`;
 
 const ImageManagement: React.FC = () => {
   const [images, setImages] = useState<ImageFile[]>([]);
