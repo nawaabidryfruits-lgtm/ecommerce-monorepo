@@ -7,7 +7,7 @@ export const useFavicon = () => {
   useEffect(() => {
     const loadFavicon = async () => {
       try {
-        const apiBase = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
+        const apiBase = import.meta.env.VITE_API_BASE_URL || '/api';
         const response = await fetch(`${apiBase}/siteconfig`);
         if (response.ok) {
           const contentType = response.headers.get('content-type') || '';

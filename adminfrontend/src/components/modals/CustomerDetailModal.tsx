@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '../ui/button';
-import { authFetch, getApiBase } from '../../services/api';
+import { authFetch, getImageBase } from '../../services/api';
 import { 
   X, 
   Calendar, 
@@ -81,7 +81,7 @@ const CustomerDetailModal: React.FC<CustomerDetailModalProps> = ({
     
     try {
       setIsLoading(true);
-      const response = await authFetch(`${getApiBase()}/admin/customers/${customerId}`);
+      const response = await authFetch(`/admin/customers/${customerId}`);
       const data = await response.json();
 
       if (data.success) {
@@ -265,7 +265,7 @@ const CustomerDetailModal: React.FC<CustomerDetailModalProps> = ({
                           <div key={index} className="flex items-center space-x-3 p-3 bg-muted/30 rounded-lg">
                             {item.product?.images && item.product.images[0] && (
                               <img
-                                src={`${getApiBase()}/images/${item.product.images[0]}`}
+                                src={`${getImageBase()}/images/${item.product.images[0]}`}
                                 alt={item.product.name}
                                 className=`w-12 h-12 object-cover rounded"
                               />
@@ -295,7 +295,7 @@ const CustomerDetailModal: React.FC<CustomerDetailModalProps> = ({
                           <div key={product._id} className="flex items-center space-x-3 p-3 bg-muted/30 rounded-lg`>
                             {product.images && product.images[0] && (
                               <img
-                                src={`${getApiBase()}/images/${product.images[0]}`}
+                                src={`${getImageBase()}/images/${product.images[0]}`}
                                 alt={product.name}
                                 className=`w-12 h-12 object-cover rounded"
                               />

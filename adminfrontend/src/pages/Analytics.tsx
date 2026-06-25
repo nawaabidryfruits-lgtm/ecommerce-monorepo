@@ -23,7 +23,7 @@ import {
   Pie,
   Cell
 } from 'recharts';
-import { authFetch, getApiBase } from '../services/api';
+import { authFetch } from '../services/api';
 
 // Types
 interface AnalyticsMetrics {
@@ -151,12 +151,12 @@ const Analytics: React.FC = () => {
 
       // Fetch from all endpoints in parallel with authentication
       const [dashboardRes, revenueRes, ordersRes, customersRes, productsRes, recentOrdersRes] = await Promise.all([
-        authFetch(`${getApiBase()}/analytics/dashboard?timeframe=${timeframe}`).catch(() => null),
-        authFetch(`${getApiBase()}/analytics/revenue?${dateParams}`).catch(() => null),
-        authFetch(`${getApiBase()}/analytics/orders?${dateParams}`).catch(() => null),
-        authFetch(`${getApiBase()}/analytics/customers?${dateParams}`).catch(() => null),
-        authFetch(`${getApiBase()}/products/stats`).catch(() => null),
-        authFetch(`${getApiBase()}/admin/orders?limit=5&sort=-createdAt`).catch(() => null)
+        authFetch(`/analytics/dashboard?timeframe=${timeframe}`).catch(() => null),
+        authFetch(`/analytics/revenue?${dateParams}`).catch(() => null),
+        authFetch(`/analytics/orders?${dateParams}`).catch(() => null),
+        authFetch(`/analytics/customers?${dateParams}`).catch(() => null),
+        authFetch('/products/stats').catch(() => null),
+        authFetch('/admin/orders?limit=5&sort=-createdAt').catch(() => null)
       ]);
 
       // Parse responses
@@ -287,7 +287,7 @@ const Analytics: React.FC = () => {
     // Fallback to direct API call if still no data
     if (!totalCustomers) {
       try {
-        const customersRes = await authFetch(`${getApiBase()}/admin/customers`);
+        const customersRes = await authFetch('/admin/customers');
         if (customersRes.ok) {
           const data = await customersRes.json();
           totalCustomers = data.totalCount || data.total || (Array.isArray(data.data) ? data.data.length : 0) || (Array.isArray(data) ? data.length : 0) || 0;
