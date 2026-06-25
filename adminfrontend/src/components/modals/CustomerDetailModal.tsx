@@ -267,7 +267,7 @@ const CustomerDetailModal: React.FC<CustomerDetailModalProps> = ({
                               <img
                                 src={`${getImageBase()}/images/${item.product.images[0]}`}
                                 alt={item.product.name}
-                                className=`w-12 h-12 object-cover rounded"
+                                className="w-12 h-12 object-cover rounded"
                               />
                             )}
                             <div className="flex-1">
@@ -284,7 +284,7 @@ const CustomerDetailModal: React.FC<CustomerDetailModalProps> = ({
                   </div>
                 )}
 
-                {activeTab === 'wishlist` && (
+                {activeTab === 'wishlist' && (
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-foreground">Wishlist Items</h4>
                     {customerData.wishlist.length === 0 ? (
@@ -292,12 +292,12 @@ const CustomerDetailModal: React.FC<CustomerDetailModalProps> = ({
                     ) : (
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         {customerData.wishlist.map((product) => (
-                          <div key={product._id} className="flex items-center space-x-3 p-3 bg-muted/30 rounded-lg`>
+                          <div key={product._id} className="flex items-center space-x-3 p-3 bg-muted/30 rounded-lg">
                             {product.images && product.images[0] && (
                               <img
                                 src={`${getImageBase()}/images/${product.images[0]}`}
                                 alt={product.name}
-                                className=`w-12 h-12 object-cover rounded"
+                                className="w-12 h-12 object-cover rounded"
                               />
                             )}
                             <div className="flex-1">

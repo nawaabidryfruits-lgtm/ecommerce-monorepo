@@ -176,7 +176,7 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
       case 'shipped': return <Truck className="h-4 w-4" />;
       case 'delivered': return <CheckCircle className="h-4 w-4" />;
       case 'cancelled': return <XCircle className="h-4 w-4" />;
-      default: return <AlertCircle className="h-4 w-4` />;
+      default: return <AlertCircle className="h-4 w-4" />;
     }
   };
 
@@ -191,9 +191,9 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
     try {
       // Update status if changed
       if (newStatus !== order.status) {
-        console.log('Updating order status:', order._id, 'from', order.status, 'to`, newStatus);
+        console.log('Updating order status:', order._id, 'from', order.status, 'to', newStatus);
         const response = await fetch(`${getApiBase()}/admin/orders/${order._id}/status`, {
-          method: `PATCH',
+          method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -213,9 +213,9 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
 
       // Update payment status if changed
       if (newPaymentStatus !== order.paymentStatus) {
-        console.log('Updating payment status:', order._id, 'from', order.paymentStatus, 'to`, newPaymentStatus);
+        console.log('Updating payment status:', order._id, 'from', order.paymentStatus, 'to', newPaymentStatus);
         const response = await fetch(`${getApiBase()}/admin/orders/${order._id}/payment`, {
-          method: `PATCH',
+          method: 'PATCH',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -252,7 +252,7 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
 
     try {
       const response = await fetch(`${getApiBase()}/admin/orders/${order._id}/shipping`, {
-        method: `PATCH',
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -296,12 +296,12 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
     try {
       // Update payment status to refunded
       const response = await fetch(`${getApiBase()}/admin/orders/${order._id}/payment`, {
-        method: `PATCH',
+        method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          paymentStatus: 'refunded`,
+          paymentStatus: 'refunded',
           refundAmount: parseFloat(refundAmount),
           notes: `Refund processed: ₹${parseFloat(refundAmount).toFixed(2)}`
         })
@@ -311,7 +311,7 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
       if (data.success) {
         // Add a note about the refund
         await fetch(`${getApiBase()}/admin/orders/${order._id}/notes`, {
-          method: `POST',
+          method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -344,7 +344,7 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
   };
 
   return (
-    <div className=`fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-card border border-border rounded-lg w-full max-w-6xl max-h-[90vh] overflow-hidden">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-border">
