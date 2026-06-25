@@ -1,4 +1,4 @@
-﻿import { getImageBase } from '../../services/api';
+import { getImageBase } from '../../services/api';
 import React from 'react';
 import { X } from 'lucide-react';
 import type { Product, Category } from '../../types';

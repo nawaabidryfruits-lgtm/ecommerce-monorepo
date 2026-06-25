@@ -1,4 +1,4 @@
-﻿import { getApiBase } from '../../services/api';
+import { getApiBase } from '../../services/api';
 import React, { useState, useEffect } from 'react';
 import { Button } from '../ui/button';
 import toast from 'react-hot-toast';
@@ -246,7 +246,7 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
   // Handle tracking info update
   const handleUpdateTracking = async () => {
     if (!trackingInfo.trackingNumber && !trackingInfo.carrier) {
-      toast.error('Please enter tracking number or carrier`);
+      toast.error('Please enter tracking number or carrier');
       return;
     }
 
@@ -289,7 +289,7 @@ const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
     }
 
     if (parseFloat(refundAmount) > order.total) {
-      toast.error('Refund amount cannot exceed order total`);
+      toast.error('Refund amount cannot exceed order total');
       return;
     }
 

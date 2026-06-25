@@ -1,4 +1,4 @@
-﻿import { getImageBase } from '../services/api';
+import { getImageBase } from '../services/api';
 import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
@@ -254,7 +254,7 @@ const ImageManagement: React.FC = () => {
             size="sm"
             disabled={isLoading}
           >
-            <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : '`}`} />
             Refresh
           </Button>
           <Button
@@ -286,7 +286,7 @@ const ImageManagement: React.FC = () => {
           multiple
           className="hidden"
         />
-        <CloudUpload className={`h-12 w-12 mx-auto mb-4 ${dragOver ? 'text-blue-500' : 'text-gray-400'}`} />
+        <CloudUpload className={`h-12 w-12 mx-auto mb-4 ${dragOver ? 'text-blue-500' : 'text-gray-400`}'} />
         <p className="text-lg font-medium text-foreground mb-1">
           {uploading ? 'Uploading...' : 'Drag & drop images here'}
         </p>

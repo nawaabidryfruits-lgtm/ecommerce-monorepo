@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '../ui/button';
 import { authFetch, getApiBase } from '../../services/api';
 import { 
@@ -68,7 +68,7 @@ const CustomerDetailModal: React.FC<CustomerDetailModalProps> = ({
 }) => {
   const [customerData, setCustomerData] = useState<CustomerDetailData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState<'overview' | 'wishlist' | 'orders'>('overview`);
+  const [activeTab, setActiveTab] = useState<'overview' | 'wishlist' | 'orders'>('overview');
 
   useEffect(() => {
     if (isOpen && customerId) {
@@ -312,7 +312,7 @@ const CustomerDetailModal: React.FC<CustomerDetailModalProps> = ({
                   </div>
                 )}
 
-                {activeTab === `orders' && (
+                {activeTab === 'orders' && (
                   <div className="space-y-4">
                     <h4 className="text-lg font-semibold text-foreground">Recent Orders</h4>
                     {customerData.recentOrders.length === 0 ? (

@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useMemo, useState, useRef } from 'react';
+import React, { useEffect, useMemo, useState, useRef } from 'react';
 import { X, Upload, Trash2, Plus } from 'lucide-react';
 import { imagesAPI, getImageBase } from '../../services/api';
 import toast from 'react-hot-toast';
@@ -30,7 +30,7 @@ const humanSize = (bytes: number) => {
   return `${n.toFixed(1)} ${units[i]}`;
 };
 
-const toSrc = (p?: string) => (p?.startsWith('http`) ? p : `${getImageBase()}${p}`);
+const toSrc = (p?: string) => (p?.startsWith('http') ? p : `${getImageBase()}${p}`);
 
 const ImageSelectorModal: React.FC<Props> = ({ isOpen, onClose, onSelect }) => {
   const [images, setImages] = useState<ImageFile[]>([]);
@@ -179,7 +179,7 @@ const ImageSelectorModal: React.FC<Props> = ({ isOpen, onClose, onSelect }) => {
         />
 
         <div
-          className={`p-4 ${dragOver ? 'bg-blue-50 border-2 border-dashed border-blue-300' : ''}`}
+          className={`p-4 ${dragOver ? 'bg-blue-50 border-2 border-dashed border-blue-300' : '`}`}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}

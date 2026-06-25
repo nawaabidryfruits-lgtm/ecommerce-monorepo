@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
@@ -692,7 +692,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, onSave, pr
                                       imgIdx === 0 
                                         ? 'ring-2 ring-blue-500 ring-offset-2' 
                                         : 'ring-2 ring-green-500 ring-offset-1'
-                                    } ${draggedImage?.colorIndex === colorIndex && draggedImage?.imageIndex === imgIdx ? 'opacity-50 scale-90' : ''}`}
+                                    } ${draggedImage?.colorIndex === colorIndex && draggedImage?.imageIndex === imgIdx ? 'opacity-50 scale-90' : '`}`}
                                     title="Drag to reorder • Click to remove"
                                   >
                                     <img
@@ -779,7 +779,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ isOpen, onClose, onSave, pr
                           <Label className="text-xs text-gray-500 mb-1 block">Size Name</Label>
                           <Input
                             placeholder="250g, 500g, 1kg, S, M, L..."
-                            value={size.name || `'}
+                            value={size.name || ''}
                             onChange={(e) => handleSizeChange(index, 'name', e.target.value)}
                             className="h-9"
                           />

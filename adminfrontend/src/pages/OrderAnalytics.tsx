@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '../components/ui/button';
 import toast from 'react-hot-toast';
 import { authFetch, getApiBase } from '../services/api';
@@ -42,7 +42,7 @@ interface AnalyticsData {
 const OrderAnalytics: React.FC = () => {
   const [analyticsData, setAnalyticsData] = useState<AnalyticsData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedPeriod, setSelectedPeriod] = useState('30d`);
+  const [selectedPeriod, setSelectedPeriod] = useState('30d');
 
   // Fetch analytics data
   const fetchAnalytics = async () => {

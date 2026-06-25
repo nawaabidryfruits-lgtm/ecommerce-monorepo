@@ -1,4 +1,4 @@
-﻿import { getImageBase } from '../services/api';
+import { getImageBase } from '../services/api';
 import React, { useState, useEffect } from 'react';
 import { Button } from '../components/ui/button';
 import toast from 'react-hot-toast';

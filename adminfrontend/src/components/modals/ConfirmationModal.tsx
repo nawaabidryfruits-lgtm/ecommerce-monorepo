@@ -30,7 +30,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
     <div className="fixed inset-0 bg-black bg-opacity-60 z-50 flex justify-center items-center">
       <div className="bg-card rounded-lg shadow-xl p-8 w-full max-w-md">
         <div className="text-center">
-          <AlertTriangle className={`h-12 w-12 ${isDestructive ? 'text-red-500' : 'text-yellow-500'} mx-auto mb-4`} />
+          <AlertTriangle className={`h-12 w-12 ${isDestructive ? 'text-red-500' : 'text-yellow-500`} mx-auto mb-4'} />
           <h3 className="text-xl font-bold text-foreground mb-2">{title}</h3>
           <div className="text-muted-foreground mb-6">{message}</div>
         </div>

@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '../components/ui/button';
 import CustomerDetailModal from '../components/modals/CustomerDetailModal';
 import toast from 'react-hot-toast';
@@ -578,7 +578,7 @@ const CustomerManagement: React.FC = () => {
                   </thead>
                   <tbody className="divide-y divide-border">
                     {filteredInquiries.map((inquiry) => (
-                      <tr key={inquiry._id} className={`hover:bg-muted/30 ${inquiry.status === 'new' ? 'bg-blue-500/5' : ''}`}>
+                      <tr key={inquiry._id} className={`hover:bg-muted/30 ${inquiry.status === 'new' ? 'bg-blue-500/5' : '`}`}>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                             inquiry.status === 'new' ? 'bg-yellow-100 text-yellow-800' :

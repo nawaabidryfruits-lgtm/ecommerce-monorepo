@@ -1,4 +1,4 @@
-﻿import { getImageBase } from '../../services/api';
+import { getImageBase } from '../../services/api';
 import React from 'react';
 import type { Category } from '../../types';
 import { Button } from '../ui/button';

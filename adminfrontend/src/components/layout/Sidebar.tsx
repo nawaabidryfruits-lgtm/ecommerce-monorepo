@@ -49,7 +49,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   return (
     <>
-      <div className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} fixed inset-y-0 left-0 z-50 w-48 bg-card backdrop-blur-xl border-r border-border transition-transform duration-200 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}>
+      <div className={`${sidebarOpen ? 'translate-x-0' : '-translate-x-full`} fixed inset-y-0 left-0 z-50 w-48 bg-card backdrop-blur-xl border-r border-border transition-transform duration-200 ease-in-out lg:translate-x-0 lg:static lg:inset-0'}>
         <div className="flex items-center justify-between h-16 px-4 border-b border-border">
           <div className="flex items-center space-x-2">
             <Package2 className="h-6 w-6 text-foreground" />
@@ -71,7 +71,7 @@ const Sidebar: React.FC<SidebarProps> = ({
               <button 
                 key={item.id}
                 onClick={() => handleSectionChange(item.id)}
-                className={`${currentSection === item.id ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left`}
+                className={`${currentSection === item.id ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted`} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left'}
               >
                 <item.icon className="text-muted-foreground group-hover:text-foreground mr-3 h-5 w-5" />
                 {item.label}
@@ -82,7 +82,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           <div className="mt-8 pt-6 border-t border-border">
             <button 
               onClick={() => handleSectionChange('settings')}
-              className={`${currentSection === 'settings' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted'} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left`}
+              className={`${currentSection === 'settings' ? 'bg-muted text-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-muted`} group flex items-center px-3 py-2 text-sm font-medium rounded-md w-full text-left'}
             >
               <Settings className="text-muted-foreground group-hover:text-foreground mr-3 h-5 w-5" />
               Settings

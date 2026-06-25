@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
@@ -242,7 +242,7 @@ const AboutUsTab: React.FC = () => {
             {data.storyImage && (
               <div className="mt-2`>
                 <img
-                  src={data.storyImage.startsWith('http`) ? data.storyImage : `${getImageBase()}${data.storyImage}`}
+                  src={data.storyImage.startsWith('http') ? data.storyImage : `${getImageBase()}${data.storyImage}`}
                   alt=`Story"
                   className="w-32 h-32 object-cover rounded border"
                 />
