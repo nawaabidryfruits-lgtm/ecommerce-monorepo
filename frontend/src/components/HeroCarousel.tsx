@@ -333,10 +333,11 @@ const HeroCarousel = () => {
                   ref={buttonRef}
                   style={{ 
                     marginTop: '30px',
-                    borderColor: slide.textColor || '#000000',
-                    color: slide.textColor || '#000000'
+                    backgroundColor: 'rgba(255, 255, 255, 0.92)',
+                    color: '#000000',
+                    borderColor: '#000000'
                   }}
-                  className="inline-flex items-center border-2 px-4 sm:px-8 py-2 sm:py-3 rounded-full text-sm sm:text-lg font-medium transition-all duration-300 hover:bg-black hover:!text-white group"
+                  className="inline-flex items-center border-2 px-4 sm:px-8 py-2 sm:py-3 rounded-full text-sm sm:text-lg font-medium transition-all duration-300 hover:!bg-black hover:!text-white group"
                 >
                   {slide.button}
                   <svg

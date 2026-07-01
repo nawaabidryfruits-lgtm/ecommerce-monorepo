@@ -214,7 +214,7 @@ const Navbar: React.FC = () => {
             <img
               src={logoUrl}
               alt={logoAlt}
-              className="h-4 sm:h-5 md:h-6 w-auto"
+              className="h-8 sm:h-10 md:h-12 w-auto"
             />
           </Link>
         </div>

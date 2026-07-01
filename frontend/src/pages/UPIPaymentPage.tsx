@@ -47,7 +47,7 @@ const UPIPaymentPage: React.FC = () => {
   // Auto-open UPI payment app when settings are loaded
   useEffect(() => {
     if (upiSettings?.upiId && order?.total && !loading) {
-      const upiLink = `upi://pay?pa=${upiSettings.upiId}&pn=${encodeURIComponent(upiSettings.merchantName || 'Store')}&am=${order.total}&cu=INR&tn=Donation`;
+      const upiLink = `upi://pay?pa=${upiSettings.upiId}&pn=${encodeURIComponent(upiSettings.merchantName || 'Store')}&am=${order.total}&cu=INR&tn=${encodeURIComponent('Nawaabi Dry Fruits')}`;
       window.location.href = upiLink;
     }
   }, [upiSettings, order, loading]);
@@ -308,7 +308,7 @@ const UPIPaymentPage: React.FC = () => {
                   {upiSettings?.upiId && order?.total && (
                     <button
                       onClick={() => {
-                        const upiLink = `upi://pay?pa=${upiSettings.upiId}&pn=${encodeURIComponent(upiSettings.merchantName || 'Store')}&am=${order.total}&cu=INR&tn=Donation`;
+                        const upiLink = `upi://pay?pa=${upiSettings.upiId}&pn=${encodeURIComponent(upiSettings.merchantName || 'Store')}&am=${order.total}&cu=INR&tn=${encodeURIComponent('Nawaabi Dry Fruits')}`;
                         window.location.href = upiLink;
                       }}
                       className="w-full max-w-xs h-12 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-xl font-medium text-sm sm:text-base hover:from-emerald-600 hover:to-emerald-700 transition-all flex items-center justify-center gap-2 shadow-md"
